@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0b0f14;
+  --foreground: #e5e7eb;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, #0b0f14 0%, #0f172a 50%, #111827 100%);
+  color: var(--foreground);
+}
+/* Responsive container with better padding on different screen sizes */
+.container {
+  @apply mx-auto w-full px-2 sm:px-4 md:px-6;
+  max-width: min(100%, 1280px);
+}
+
+/* Container with less padding for navbar */
+.container-nav {
+  @apply mx-auto w-full px-1 sm:px-2;
+  max-width: min(100%, 1280px);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+  .container-nav {
+    max-width: 624px; /* Slightly wider than regular container */
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+  .container-nav {
+    max-width: 760px; /* Slightly wider than regular container */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+  .container-nav {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+  .container-nav {
+    max-width: 1320px; /* Wider than regular container */
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-nav {
+    max-width: 1536px; /* Full width for very large screens */
+  }
+}
+
+.section {
+  @apply py-12 md:py-16;
+}
+
+.card {
+  @apply rounded-xl border border-steel-700/60 bg-gradient-to-b from-steel-900/60 to-steel-800/40 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden;
+}
+
+.card::before {
+  @apply absolute inset-0 bg-gradient-to-br from-brand-blue/5 to-transparent opacity-0 transition-opacity duration-300 content-[''];
+}
+
+.card:hover::before {
+  @apply opacity-100;
+}
+
+.pill {
+  @apply inline-flex items-center rounded-md border border-steel-600/70 px-2 py-0.5 text-sm text-steel-200;
+}
+/* Fluid typography system */
+.h1 {
+  @apply font-bold tracking-tight;
+  font-size: clamp(1.875rem, 5vw, 3.5rem);
+}
+
+.h2 {
+  @apply font-semibold;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.h3 {
+  @apply font-semibold;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.lead {
+  @apply text-steel-200 max-w-2xl;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+}
+
+.btn-primary {
+  @apply inline-flex items-center rounded-md bg-brand-blue px-4 py-2 text-white hover:opacity-95 transition-colors shadow-md;
+}
+
+.btn-outline {
+  @apply inline-flex items-center rounded-md border border-steel-500/70 px-4 py-2 text-steel-100 hover:bg-steel-800/30 transition-colors;
+}
+
+.section-title { @apply h2 relative; }
+.section-title::after { content: ""; @apply absolute -bottom-2 left-0 h-0.5 w-16 bg-brand-blue; }
+
+/* Simple fade-in for content */
+.fade-in {
+  opacity: 0;
+  animation: simpleFadeIn 400ms ease-out forwards;
+}
+
+@keyframes simpleFadeIn {
+  to { opacity: 1; }
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+.glass-dark {
+  @apply bg-black/30 backdrop-blur-md border border-steel-700/30;
+}
+
+/* Responsive table styles */
+.responsive-table {
+  @apply w-full text-left;
+}
+
+.responsive-table th {
+  @apply pb-2 pr-4 font-semibold text-white;
+}
+
+.responsive-table tr {
+  @apply border-b border-steel-800 hover:bg-steel-800/30 transition-colors;
+}
+
+.responsive-table td {
+  @apply py-3 pr-4;
+}
+
+@media (max-width: 640px) {
+  .responsive-table thead {
+    @apply hidden;
+  }
+  
+  .responsive-table tr {
+    @apply block border-b border-steel-800 py-3;
+  }
+  
+  .responsive-table td {
+    @apply block pl-3 py-2;
+  }
+  
+  .responsive-table td:before {
+    content: attr(data-label);
+    @apply inline-block font-medium text-white w-1/3;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-steel-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-steel-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-steel-600;
+}
+
+/* Responsive grid utilities */
+.responsive-grid-2 {
+  @apply grid gap-4 sm:gap-6 md:gap-8;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.responsive-grid-3 {
+  @apply grid gap-4 sm:gap-6 md:gap-8;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+.responsive-grid-4 {
+  @apply grid gap-4 sm:gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+
+/* Fluid spacing utilities */
+.fluid-mt {
+  margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+.fluid-mb {
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.fluid-py {
+  padding-top: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+/* Responsive image container */
+.responsive-image {
+  @apply relative w-full overflow-hidden;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.responsive-image img {
+  @apply absolute top-0 left-0 w-full h-full object-cover;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
