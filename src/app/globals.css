@@ -244,3 +244,24 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Enhanced mobile responsiveness */
+@media (max-width: 480px) {
+  .container {
+    @apply px-3;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+  
+  .responsive-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch-friendly buttons for mobile */
+@media (hover: none) {
+  .btn-primary, .btn-outline, a {
+    @apply active:opacity-70;
+  }
+}

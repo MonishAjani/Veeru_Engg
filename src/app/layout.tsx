@@ -1,10 +1,16 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
-  title: 'InfraCorp — Industrial Fabrication & EPC Partner',
+  title: 'Veeru Engineering — Industrial Fabrication & EPC Partner',
   description: 'Showcasing credibility, scale, projects, infrastructure, and compliance.',
-  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 5.0, // Allow zooming for accessibility
+  userScalable: true, // Allow users to zoom
 }
 
 export default function RootLayout({
@@ -18,4 +24,3 @@ export default function RootLayout({
     </html>
   )
 }
-

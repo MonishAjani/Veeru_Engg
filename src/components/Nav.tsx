@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react';
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Services' },
   { href: '/infrastructure', label: 'Infrastructure' },
@@ -18,11 +17,14 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-steel-700/60 bg-gradient-to-b from-black/80 to-steel-900/80 backdrop-blur-md w-full">
       <div className="container-nav flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded bg-brand-blue flex items-center justify-center">
-            <span className="font-bold text-white">IC</span>
+        <Link href="/" className="flex items-center gap-2 ml-8">
+          <div className="h-12 w-auto">
+            <img
+              src="/images/veeru Engg White.svg"
+              alt="Veeru Engineering Logo"
+              className="h-full w-auto"
+            />
           </div>
-          <span className="font-semibold text-white">InfraCorp</span>
         </Link>
         
         {/* Mobile menu button */}
@@ -80,4 +82,3 @@ export default function Nav() {
     </header>
   );
 }
-

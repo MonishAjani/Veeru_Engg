@@ -1,6 +1,7 @@
 # Next.js build output
 .next/
 out/
+build/
 
 # Node.js dependencies
 node_modules/
@@ -8,6 +9,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
 
 # Environment variables
 .env
@@ -43,6 +49,12 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
 
 # Django specific
 *.log
@@ -51,11 +63,20 @@ db.sqlite3
 db.sqlite3-journal
 media/
 staticfiles/
+static/admin/
+static/rest_framework/
 
 # Virtual Environment
 venv/
 ENV/
 env/
+.env/
+.venv/
+env.bak/
+venv.bak/
+/venv/
+../venv/
+d:/VS/venv/
 
 # IDE specific files
 .idea/
@@ -63,3 +84,24 @@ env/
 *.swp
 *.swo
 .DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+.DS_Store
+Thumbs.db
+.directory
+*.tmp
+*.bak
+*.backup
+*~

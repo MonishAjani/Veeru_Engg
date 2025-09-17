@@ -7,14 +7,17 @@ export default function Footer() {
         <div className="responsive-grid-4 mb-12">
           {/* Company info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded bg-brand-blue flex items-center justify-center">
-                <span className="font-bold text-white">IC</span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-10 w-auto">
+                <img
+                  src="/images/veeru Engg White.svg"
+                  alt="Veeru Engineering Logo"
+                  className="h-full w-auto"
+                />
               </div>
-              <span className="font-semibold text-white">InfraCorp</span>
             </div>
             <p className="text-steel-300 mb-4">
-              Delivering excellence in industrial fabrication, erection, and piping projects since 1995.
+              Veeru Engineering - Delivering excellence in industrial fabrication, erection, and piping projects since 1995.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-steel-300 hover:text-white transition-colors">
@@ -72,14 +75,14 @@ export default function Footer() {
                 <svg className="h-5 w-5 text-brand-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-steel-300">info@infracorp.com</span>
+                <span className="text-steel-300">info@veeruengineering.com</span>
               </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-steel-700/30 pt-6 flex flex-col md:flex-row md:items-center md:justify-between text-steel-400">
-          <p className="text-sm sm:text-base">© {new Date().getFullYear()} InfraCorp. All rights reserved.</p>
+          <p className="text-sm sm:text-base">© {new Date().getFullYear()} Veeru Engineering. All rights reserved.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2 mt-4 md:mt-0">
             <span className="inline-flex items-center text-sm">
               <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
@@ -103,4 +106,3 @@ export default function Footer() {
     </footer>
   );
 }
-

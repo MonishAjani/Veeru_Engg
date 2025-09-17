@@ -1,4 +1,4 @@
-import { getServices } from '../../../lib/api'
+import Link from 'next/link';
 
 // Icons mapping for service icons
 const iconComponents: Record<string, React.ReactNode> = {
@@ -41,24 +41,41 @@ function getIconForService(iconName: string) {
   return iconComponents[iconName] || iconComponents.default;
 }
 
-export default async function ServicesPage() {
-  // Fetch services from the backend
-  let services: any[] = [];
-  let error = null;
-  
-  try {
-    const result: any = await getServices();
-    // Handle both direct array and paginated response with results array
-    if (Array.isArray(result)) {
-      services = result;
-    } else if (result && typeof result === 'object' && Array.isArray(result.results)) {
-      services = result.results;
-    }
-  } catch (e) {
-    error = e;
-    console.error('Error fetching services:', e);
-  }
+// Dummy services data
+const dummyServices = [
+  {
+    id: 1,
+    title: "Fabrication",
+    description: "Precision metal fabrication services for industrial applications with high-quality standards.",
+    icon: "building"
+  },
+  {
+    id: 2,
+    title: "Erection",
+    description: "Professional structural erection services for industrial and commercial projects.",
+    icon: "crane"
+  },
+  {
+    id: 3,
+    title: "Piping",
+    description: "Comprehensive industrial piping solutions for various applications and industries.",
+    icon: "pipe"
+  },
+  {
+    id: 4,
+    title: "Sheds",
+    description: "Custom industrial shed design, fabrication, and installation services.",
+    icon: "warehouse"
+  },
+  {
+    id: 5,
+    title: "Equipment",
+    description: "Specialized industrial equipment installation, maintenance, and repair services.",
+    icon: "cog"
+  },
+];
 
+export default function ServicesPage() {
   return (
     <div>
       {/* Hero section */}
@@ -75,49 +92,39 @@ export default async function ServicesPage() {
       {/* Services section */}
       <section className="py-16">
         <div className="container">
-          {error ? (
-            <div className="bg-red-900/20 border border-red-800/50 rounded-lg p-6 text-center">
-              <h3 className="text-xl font-semibold text-red-200">Unable to load services</h3>
-              <p className="mt-2 text-steel-300">
-                We're experiencing technical difficulties. Please try again later.
-              </p>
-            </div>
-          ) : services.length === 0 ? (
-            // Message when no services are available
-            <div className="bg-steel-900/20 border border-steel-800/50 rounded-lg p-6 text-center">
-              <h3 className="text-xl font-semibold">No Services Available</h3>
-              <p className="mt-2 text-steel-300">
-                Please add services through the admin panel.
-              </p>
-            </div>
-          ) : (
-            // Display actual services from the backend
-            <div className="responsive-grid-3">
-              {services.map((service) => (
-                <div
-                  key={service.id}
-                  className="card p-8 flex flex-col items-center text-center fade-in"
-                >
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-blue/30 to-brand-blue/10 flex items-center justify-center mb-4">
-                    {getIconForService(service.icon)}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-steel-300">{service.description}</p>
-                  <div className="mt-6 pt-4 border-t border-steel-700/30 w-full">
-                    <button className="text-brand-blue hover:text-white transition-colors flex items-center justify-center w-full">
-                      Learn More
-                      <svg className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </button>
-                  </div>
+          <div className="responsive-grid-3">
+            {dummyServices.map((service) => (
+              <div
+                key={service.id}
+                className="card p-8 flex flex-col items-center text-center fade-in"
+              >
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-blue/30 to-brand-blue/10 flex items-center justify-center mb-4">
+                  {getIconForService(service.icon)}
                 </div>
-              ))}
-            </div>
-          )}
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-steel-300">{service.description}</p>
+                
+                <div className="mt-6 pt-4 border-t border-steel-700/30 w-full">
+                  <Link 
+                    href="/contact"
+                    className="text-brand-blue hover:text-white transition-colors flex items-center justify-center w-full"
+                  >
+                    Contact Us
+                    <svg 
+                      className="h-4 w-4 ml-1" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
   );
 }
-

@@ -5,32 +5,43 @@ import CountUp from '../../components/CountUp';
 export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
-      <section className="min-h-[90vh] flex flex-col justify-center fluid-py bg-gradient-to-br from-black via-steel-900/90 to-brand-blue/30 relative overflow-hidden">
-        {/* Background overlay with subtle radial gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.15),transparent_70%)]"></div>
+      <section className="min-h-[90vh] flex flex-col justify-center fluid-py relative overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/Webiste image.jpg"
+            alt="Industrial Engineering"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Overlay with blend mode for better image visibility while maintaining text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-steel-900/40 to-brand-blue/30 mix-blend-overlay"></div>
+        </div>
         
-        {/* Static background elements */}
-        <div className="absolute top-0 right-0 w-full h-full">
+        {/* Background overlay with subtle radial gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.15),transparent_70%)] z-10"></div>
+        
+        {/* Static background elements for added depth */}
+        <div className="absolute top-0 right-0 w-full h-full z-20">
           <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-brand-blue/10 blur-3xl"></div>
           <div className="absolute right-1/4 bottom-1/4 w-64 h-64 rounded-full bg-steel-700/20 blur-3xl"></div>
           <div className="absolute left-1/4 top-1/3 w-48 h-48 rounded-full bg-brand-blue/5 blur-3xl"></div>
         </div>
         
-        <div className="container relative z-10">
+        <div className="container relative z-30">
           <div className="max-w-4xl">
-            <div className="inline-block mb-2 px-3 py-1 bg-brand-blue/20 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-brand-blue/30">
+            <div className="inline-block mb-2 px-3 py-1 bg-brand-blue/40 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-brand-blue/50 shadow-md">
               Established 1995
             </div>
-            <h1 className="h1">
+            <h1 className="h1 text-white drop-shadow-lg">
               Craft <span className="italic font-normal relative">
                 Precision
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-brand-blue"></span>
               </span> Solutions
-              <br />with <span className="text-white">InfraCorp</span>.
+              <br />with <span className="text-white font-bold">Veeru Engineering</span>.
             </h1>
             
-            <p className="fluid-mt lead">
-              InfraCorp transforms industrial challenges into engineered excellence —
+            <p className="fluid-mt lead text-white font-medium px-4 py-3 bg-black/30 backdrop-blur-sm rounded-lg shadow-lg inline-block">
+              Veeru Engineering transforms industrial challenges into engineered excellence —
               delivering large-scale fabrication, erection, and piping projects with
               proven safety, quality, and timelines.
             </p>
@@ -73,7 +84,7 @@ export default function HomePage() {
                   </svg>
                 </div>
               </div>
-              <p className="ml-6 text-steel-300">
+              <p className="ml-6 text-white drop-shadow">
                 <span className="font-semibold text-white">50+</span> projects delivered nationwide
               </p>
             </div>
