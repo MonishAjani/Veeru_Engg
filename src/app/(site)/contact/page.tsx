@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import HeroSection from '../../../components/HeroSection';
 
 export default function ContactPage() {
   const [bookingForm, setBookingForm] = useState({
@@ -89,15 +90,10 @@ export default function ContactPage() {
   
   return (
     <div>
-      {/* Hero section */}
-      <section className="py-12 bg-gradient-to-b from-black to-steel-900">
-        <div className="container">
-          <h1 className="text-3xl md:text-4xl font-bold">Contact Us</h1>
-          <p className="mt-4 text-steel-200 max-w-3xl">
-            Partner with us for your industrial and infrastructure projects. We're here to help you achieve your goals.
-          </p>
-        </div>
-      </section>
+      <HeroSection
+        title="Contact Us"
+        description="Partner with us for your industrial and infrastructure projects. We're here to help you achieve your goals."
+      />
       
       
       <section className="py-16">
@@ -107,7 +103,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold mb-6">Company Information</h2>
               
-              <div className="bg-steel-900/30 rounded-xl p-6 border border-steel-800">
+              <div className="bg-gradient-card rounded-xl p-6 shadow-lg">
                 <table className="w-full text-steel-200">
                   <tbody>
                     <tr className="border-b border-steel-800">
@@ -121,7 +117,7 @@ export default function ContactPage() {
                     <tr className="border-b border-steel-800">
                       <td className="py-3 pr-4 font-semibold">Office Address</td>
                       <td className="py-3">
-                        178, Satya Sai Soceity,<br />
+                        Plot No. C-27, Sadachar Society,<br />
                         Dattawadi, Amravati Road,<br />
                         NAGPUR-440023
                       </td>
@@ -136,14 +132,6 @@ export default function ContactPage() {
                         <a href="mailto:vei4275@gmail.com" className="text-brand-blue hover:underline">
                           vei4275@gmail.com
                         </a>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-steel-800">
-                      <td className="py-3 pr-4 font-semibold">Project Office Address</td>
-                      <td className="py-3">
-                        Plot No. C-27, Sadachar Society,<br />
-                        Dattawadi, Amravati Road,<br />
-                        NAGPUR-440023
                       </td>
                     </tr>
                     <tr className="border-b border-steel-800">
@@ -162,7 +150,7 @@ export default function ContactPage() {
             
             {/* Forms Section */}
             <div>
-              <div className="bg-steel-900/30 rounded-xl border border-steel-800 overflow-hidden">
+              <div className="bg-gradient-card rounded-xl shadow-lg overflow-hidden">
                 {/* Tabs */}
                 <div className="flex border-b border-steel-800">
                   <button 
@@ -248,7 +236,7 @@ export default function ContactPage() {
                     
                     <button 
                       type="submit" 
-                      className={`w-full rounded py-3 px-4 font-medium ${isSubmitting ? 'bg-brand-blue/70' : 'bg-brand-blue hover:bg-brand-blue-dark'}`}
+                      className={`w-full rounded py-3 px-4 font-medium ${isSubmitting ? 'bg-gradient-blue/70' : 'bg-gradient-blue hover:shadow-lg'}`}
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Sending...' : submitSuccess ? 'Message Sent!' : 'Send Message'}
@@ -341,7 +329,7 @@ export default function ContactPage() {
                     
                     <button 
                       type="submit" 
-                      className={`w-full rounded py-3 px-4 font-medium ${isSubmitting ? 'bg-brand-blue/70' : 'bg-brand-blue hover:bg-brand-blue-dark'}`}
+                      className={`w-full rounded py-3 px-4 font-medium ${isSubmitting ? 'bg-gradient-blue/70' : 'bg-gradient-blue hover:shadow-lg'}`}
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Booking...' : submitSuccess ? 'Call Booked!' : 'Book a 15 min call'}
@@ -362,7 +350,7 @@ export default function ContactPage() {
       <section className="py-8">
         <div className="container">
           <h2 className="text-2xl font-bold mb-4 text-center">Our Location</h2>
-          <div className="rounded-xl overflow-hidden h-[200px] border border-steel-800 max-w-2xl mx-auto">
+          <div className="rounded-xl overflow-hidden h-[200px] shadow-lg bg-gradient-card max-w-2xl mx-auto">
             {mapLoaded && (
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.8978553694!2d79.0633!3d21.1563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA5JzIyLjciTiA3OcKwMDMnNDcuOSJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin"
@@ -379,7 +367,7 @@ export default function ContactPage() {
           </div>
           <div className="mt-4 text-center">
             <p className="text-steel-300">
-              <strong>Address:</strong> 178, Satya Sai Soceity, Dattawadi, Amravati Road, NAGPUR-440023
+              <strong>Address:</strong> Plot No. C-27, Sadachar Society, Dattawadi, Amravati Road, NAGPUR-440023
             </p>
           </div>
         </div>

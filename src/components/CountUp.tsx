@@ -2,6 +2,15 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+// Add a debounce utility to prevent multiple rapid animations
+const debounce = (fn: Function, ms = 300) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return function(...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), ms);
+  };
+};
+
 interface CountUpProps {
   end: number;
   duration?: number;
@@ -11,7 +20,9 @@ interface CountUpProps {
 export default function CountUp({ end, duration = 2000, suffix = '' }: CountUpProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasCompleted, setHasCompleted] = useState(false);
   const countRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,7 +53,6 @@ export default function CountUp({ end, duration = 2000, suffix = '' }: CountUpPr
     if (!isVisible) return;
 
     let startTimestamp: number | null = null;
-    let animationFrameId: number;
 
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
@@ -50,31 +60,40 @@ export default function CountUp({ end, duration = 2000, suffix = '' }: CountUpPr
       setCount(Math.floor(progress * end));
 
       if (progress < 1) {
-        animationFrameId = window.requestAnimationFrame(step);
+        animationRef.current = window.requestAnimationFrame(step);
+      } else {
+        // Mark animation as completed when it reaches the end
+        setHasCompleted(true);
       }
     };
 
-    animationFrameId = window.requestAnimationFrame(step);
+    // Reset hasCompleted state when starting a new animation
+    setHasCompleted(false);
+    animationRef.current = window.requestAnimationFrame(step);
     
     return () => {
-      if (animationFrameId) {
-        window.cancelAnimationFrame(animationFrameId);
+      if (animationRef.current) {
+        window.cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
     };
   }, [isVisible, end, duration]);
 
-  const handleMouseEnter = () => {
-    setCount(0);
-    setIsVisible(true);
-  };
+  // Only restart the animation if it's been at least 3 seconds since completion
+  // and only when the component isn't currently visible (scrolled out of view)
+  const handleMouseEnter = debounce(() => {
+    if (!isVisible && hasCompleted) {
+      setIsVisible(true);
+    }
+  }, 500);
 
   return (
     <div
       ref={countRef}
-      className="text-4xl font-bold text-white cursor-pointer"
+      className="text-4xl font-bold text-white"
       onMouseEnter={handleMouseEnter}
     >
-      {count}{suffix}
+      {hasCompleted ? end + suffix : count + suffix}
     </div>
   );
 }

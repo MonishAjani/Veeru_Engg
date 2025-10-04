@@ -2,17 +2,18 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-steel-700/60 bg-gradient-to-t from-black/80 to-steel-900/40 pt-12 pb-6">
-      <div className="container">
-        <div className="responsive-grid-4 mb-12">
+    <footer className="border-t border-steel-700/60 bg-gradient-to-b from-[#0f172a] via-[#1e3a8a]/90 to-[#0f172a] pt-8 sm:pt-12 pb-4 sm:pb-6">
+      <div className="container px-responsive">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 sm:mb-12">
           {/* Company info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-auto">
+              <div className="h-10 sm:h-12 md:h-14 w-auto bg-transparent p-1 rounded relative group">
+                <div className="absolute inset-0 bg-blue-500/10 rounded-lg filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <img
-                  src="/images/veeru Engg White.svg"
+                  src="/images/company Logo -white.png"
                   alt="Veeru Engineering Logo"
-                  className="h-full w-auto"
+                  className="h-full w-auto max-w-[120px] sm:max-w-[140px] md:max-w-[160px] object-contain drop-shadow-lg filter brightness-110 transition-all duration-300 group-hover:brightness-125"
                 />
               </div>
             </div>
@@ -33,71 +34,71 @@ export default function Footer() {
           </div>
           
           {/* Quick links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link href="/about" className="text-steel-300 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="text-steel-300 hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/projects" className="text-steel-300 hover:text-white transition-colors">Projects</Link></li>
-              <li><Link href="/certificates" className="text-steel-300 hover:text-white transition-colors">Certificates</Link></li>
+          <div className="mt-6 sm:mt-0">
+            <h3 className="text-white font-semibold mb-4 text-lg sm:text-xl">Quick Links</h3>
+            <ul className="space-y-2 sm:space-y-3">
+              <li><Link href="/about" className="text-steel-300 hover:text-white transition-colors block py-1">About Us</Link></li>
+              <li><Link href="/services" className="text-steel-300 hover:text-white transition-colors block py-1">Services</Link></li>
+              <li><Link href="/projects" className="text-steel-300 hover:text-white transition-colors block py-1">Projects</Link></li>
+              <li><Link href="/certificates" className="text-steel-300 hover:text-white transition-colors block py-1">Certificates</Link></li>
             </ul>
           </div>
           
           {/* Services */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Our Services</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-steel-300 hover:text-white transition-colors">Structural Fabrication</a></li>
-              <li><a href="#" className="text-steel-300 hover:text-white transition-colors">Industrial Piping</a></li>
-              <li><a href="#" className="text-steel-300 hover:text-white transition-colors">Heavy Equipment</a></li>
-              <li><a href="#" className="text-steel-300 hover:text-white transition-colors">Factory Sheds</a></li>
+          <div className="mt-6 sm:mt-0">
+            <h3 className="text-white font-semibold mb-4 text-lg sm:text-xl">Our Services</h3>
+            <ul className="space-y-2 sm:space-y-3">
+              <li><a href="#" className="text-steel-300 hover:text-white transition-colors block py-1">Structural Fabrication</a></li>
+              <li><a href="#" className="text-steel-300 hover:text-white transition-colors block py-1">Industrial Piping</a></li>
+              <li><a href="#" className="text-steel-300 hover:text-white transition-colors block py-1">Heavy Equipment</a></li>
+              <li><a href="#" className="text-steel-300 hover:text-white transition-colors block py-1">Factory Sheds</a></li>
             </ul>
           </div>
           
           {/* Contact */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-3">
+          <div className="mt-6 sm:mt-0">
+            <h3 className="text-white font-semibold mb-4 text-lg sm:text-xl">Contact Us</h3>
+            <ul className="space-y-3 sm:space-y-4">
               <li className="flex items-start">
-                <svg className="h-5 w-5 text-brand-blue mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5 text-brand-blue mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-steel-300">123 Industrial Area, Sector 5, Noida, UP, India</span>
+                <span className="text-steel-300 text-sm sm:text-base">Plot No. C-27, Sadachar Society, Dattawadi, Amravati Road, NAGPUR-440023</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-5 w-5 text-brand-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5 text-brand-blue mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-steel-300">+91 98765 43210</span>
+                <span className="text-steel-300 text-sm sm:text-base">+91 98765 43210</span>
               </li>
               <li className="flex items-center">
-                <svg className="h-5 w-5 text-brand-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-5 w-5 text-brand-blue mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-steel-300">info@veeruengineering.com</span>
+                <span className="text-steel-300 text-sm sm:text-base">info@veeruengineering.com</span>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-steel-700/30 pt-6 flex flex-col md:flex-row md:items-center md:justify-between text-steel-400">
-          <p className="text-sm sm:text-base">© {new Date().getFullYear()} Veeru Engineering. All rights reserved.</p>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 mt-4 md:mt-0">
-            <span className="inline-flex items-center text-sm">
-              <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+        <div className="border-t border-steel-700/30 pt-4 sm:pt-6 flex flex-col md:flex-row md:items-center md:justify-between text-steel-400">
+          <p className="text-xs sm:text-sm text-center md:text-left">© {new Date().getFullYear()} Veeru Engineering. All rights reserved.</p>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-3 sm:gap-x-4 gap-y-2 mt-3 md:mt-0">
+            <span className="inline-flex items-center text-xs sm:text-sm">
+              <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-green-500 mr-1 sm:mr-2"></span>
               GST Compliant
             </span>
-            <span className="inline-flex items-center text-sm">
-              <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+            <span className="inline-flex items-center text-xs sm:text-sm">
+              <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-green-500 mr-1 sm:mr-2"></span>
               MSME Registered
             </span>
-            <span className="inline-flex items-center text-sm">
-              <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+            <span className="inline-flex items-center text-xs sm:text-sm">
+              <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-green-500 mr-1 sm:mr-2"></span>
               PF Registered
             </span>
-            <span className="inline-flex items-center text-sm">
-              <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+            <span className="inline-flex items-center text-xs sm:text-sm">
+              <span className="h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-green-500 mr-1 sm:mr-2"></span>
               PAN Verified
             </span>
           </div>
