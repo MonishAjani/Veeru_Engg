@@ -299,7 +299,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     </div>
                     <div>
                       <div className="text-xs text-steel-400">Email</div>
-                      <span className="text-steel-200">info@veeruengineering.com</span>
+                      <span className="text-steel-200">veeruinfranag@gmail.com</span>
                     </div>
                   </div>
                 </div>

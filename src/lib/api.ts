@@ -34,13 +34,22 @@ export interface Service {
 export interface Project {
   id: number
   name: string
-  project_type: 'live' | 'completed'
   details: string
   quantity: string
-  image?: string
-  image_url?: string
+  location?: string
+  work?: string
+  images?: ProjectImage[]
+  main_image_url?: string
   created_at: string
   updated_at: string
+}
+
+export interface ProjectImage {
+  id: number
+  image: string
+  image_url: string
+  caption?: string
+  order: number
 }
 
 export interface LiveProject {
@@ -51,6 +60,9 @@ export interface LiveProject {
   location?: string
   image?: string
   image_url?: string
+  status?: string
+  category?: string
+  year?: string
   created_at: string
   updated_at: string
 }
@@ -75,6 +87,22 @@ export interface Certificate {
   details: string
   image: string | null
   image_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+// Prestigious Project types
+export interface PrestigiousProject {
+  id: number
+  name: string
+  details: string
+  quantity: string
+  location?: string
+  client?: string
+  image?: string
+  image_url?: string
+  order: number
+  is_active: boolean
   created_at: string
   updated_at: string
 }
@@ -121,14 +149,11 @@ export async function getCertificate(id: number): Promise<Certificate | null> {
   }
 }
 
-// Function to fetch legacy projects from the Django backend (for backward compatibility)
-export async function getProjects(projectType?: 'live' | 'completed'): Promise<Project[]> {
+// Function to fetch projects from the Django backend
+export async function getProjects(): Promise<Project[]> {
   try {
-    const url = projectType
-      ? `/projects/legacy/?project_type=${projectType}`
-      : '/projects/legacy/';
-    console.log('Fetching legacy projects from URL:', url);
-    const response = await apiFetch<PaginatedResponse<Project>>(url);
+    console.log('Fetching projects from the Projects table');
+    const response = await apiFetch<PaginatedResponse<Project>>('/projects/');
     console.log('Projects response:', response);
     return response.results || [];
   } catch (error) {
@@ -189,6 +214,29 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
     return await apiFetch<CompletedProject>(`/projects/completed/${id}/`);
   } catch (error) {
     console.error(`Error fetching completed project ${id}:`, error);
+    return null;
+  }
+}
+
+// Function to fetch prestigious projects from the Django backend
+export async function getPrestigiousProjects(): Promise<PrestigiousProject[]> {
+  try {
+    console.log('Fetching prestigious projects');
+    const response = await apiFetch<PaginatedResponse<PrestigiousProject>>('/prestigious-projects/');
+    console.log('Prestigious projects response:', response);
+    return response.results || [];
+  } catch (error) {
+    console.error('Error fetching prestigious projects:', error);
+    return []; // Return empty array on error
+  }
+}
+
+// Function to fetch a single prestigious project by ID
+export async function getPrestigiousProject(id: number): Promise<PrestigiousProject | null> {
+  try {
+    return await apiFetch<PrestigiousProject>(`/prestigious-projects/${id}/`);
+  } catch (error) {
+    console.error(`Error fetching prestigious project ${id}:`, error);
     return null;
   }
 }

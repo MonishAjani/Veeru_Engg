@@ -15,9 +15,10 @@ interface CountUpProps {
   end: number;
   duration?: number;
   suffix?: string;
+  className?: string;
 }
 
-export default function CountUp({ end, duration = 2000, suffix = '' }: CountUpProps) {
+export default function CountUp({ end, duration = 2000, suffix = '', className = '' }: CountUpProps) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [hasCompleted, setHasCompleted] = useState(false);
@@ -90,7 +91,7 @@ export default function CountUp({ end, duration = 2000, suffix = '' }: CountUpPr
   return (
     <div
       ref={countRef}
-      className="text-4xl font-bold text-white"
+      className={`font-bold ${className}`}
       onMouseEnter={handleMouseEnter}
     >
       {hasCompleted ? end + suffix : count + suffix}

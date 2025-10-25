@@ -1,36 +1,44 @@
 'use client';
-
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react';
 
 const links = [
-  { href: '/about', label: 'About Us' },
-  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
   { href: '/infrastructure', label: 'Infrastructure' },
+  { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
-  { href: '/certificates', label: 'Certificates' },
+  { href: '/certificates', label: 'Certifications' },
+  { href: '/enquiry', label: 'Enquiry' },
 ]
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#0f172a] backdrop-blur-md w-full shadow-lg">
-      <div className="container-nav flex h-16 sm:h-20 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 ml-2 sm:ml-4 md:ml-8">
-          <div className="h-10 sm:h-12 md:h-16 w-auto bg-transparent p-1 rounded relative group">
-            <div className="absolute inset-0 bg-blue-500/10 rounded-lg filter blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <img
-              src="/images/company Logo -white.png"
-              alt="Veeru Engineering Logo"
-              className="h-full w-auto max-w-[120px] sm:max-w-[150px] md:max-w-[180px] object-contain drop-shadow-lg filter brightness-110 transition-all duration-300 group-hover:brightness-125"
-            />
+    <header className="sticky top-0 z-50 bg-white w-full shadow-sm border-b border-gray-100">
+      {/* Orange top line with gradient */}
+      <div className="h-1 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600"></div>
+      
+      <div className="container mx-auto px-4 flex h-14 items-center justify-between">
+        <Link href="/" className="flex items-center group">
+          <div className="flex items-center">
+            {/* Logo container */}
+            <div className="flex items-center justify-center">
+              <img
+                src="/images/Veeru Infra Logo.png"
+                alt="Veeru Engineering Logo"
+                className="h-8"
+                style={{ width: '70px' }}
+              />
+            </div>
+            {/* No orange accent on hover */}
           </div>
         </Link>
         
-        {/* Mobile menu button */}
+        {/* Mobile menu button - improved touch target */}
         <button
-          className="md:hidden rounded-md p-2 mr-2 text-steel-100 hover:bg-gradient-blue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="md:hidden rounded-md p-3 text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -40,19 +48,19 @@ export default function Nav() {
         </button>
         
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center gap-2 lg:gap-6 mr-2 sm:mr-4">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-steel-100 hover:text-white transition-colors text-sm lg:text-base px-2 py-1"
+              className="text-gray-700 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               {l.label}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="ml-2 rounded-md bg-gradient-blue px-3 py-1.5 lg:px-4 lg:py-2 text-sm lg:text-base text-white hover:shadow-lg transition-all shadow-metal"
+            className="ml-4 bg-orange-500 text-white px-4 py-1.5 rounded-lg hover:bg-orange-600 transition-colors font-medium text-sm"
           >
             Contact Us
           </Link>
@@ -61,15 +69,15 @@ export default function Nav() {
       
       {/* Mobile menu */}
       <div
-        className={`md:hidden ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 ease-in-out bg-gradient-card shadow-metal`}
+        className={`md:hidden ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden transition-all duration-300 ease-in-out bg-white shadow-lg border-t border-gray-100`}
         aria-hidden={!isMenuOpen}
       >
-        <nav className="flex flex-col space-y-2 px-4 pb-4 pt-2">
+        <nav className="flex flex-col space-y-0 px-4 pb-4 pt-2">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-steel-100 hover:text-white py-2 flex items-center justify-center text-lg border-b border-steel-700/20"
+              className="text-gray-700 hover:text-gray-900 py-3.5 flex items-center text-base font-medium border-b border-gray-100"
               onClick={() => setIsMenuOpen(false)}
             >
               {l.label}
@@ -77,7 +85,7 @@ export default function Nav() {
           ))}
           <Link
             href="/contact"
-            className="text-steel-100 hover:text-white py-3 mt-2 flex items-center justify-center bg-gradient-blue rounded-md"
+            className="text-white py-3 mt-3 flex items-center justify-center bg-orange-500 rounded-lg hover:bg-orange-600 transition-colors font-medium text-base"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact Us
