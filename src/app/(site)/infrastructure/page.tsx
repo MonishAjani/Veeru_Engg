@@ -1,8 +1,9 @@
+
 'use client';
 
-import { useState } from 'react';
-import HeroSection from '../../../components/HeroSection';
+import { useState, useEffect, useRef } from 'react';
 import CountUp from '../../../components/CountUp';
+import Image from 'next/image';
 
 export default function InfrastructurePage() {
   const [expandedTables, setExpandedTables] = useState({
@@ -18,15 +19,173 @@ export default function InfrastructurePage() {
       [tableName]: !expandedTables[tableName]
     });
   };
+  // Parallax effect for hero section
+  const heroRef = useRef(null);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollPosition = window.scrollY;
+        const heroElement = heroRef.current;
+        
+        // Parallax effect for background image
+        const parallaxSpeed = 0.5;
+        const yPos = scrollPosition * parallaxSpeed;
+        
+        // Apply parallax effect to background image
+        heroElement.style.backgroundPosition = `center ${-yPos}px`;
+        
+        // Fade out text as user scrolls down
+        const opacity = Math.max(1 - scrollPosition / 500, 0);
+        const heroContent = heroElement.querySelector('.hero-content');
+        if (heroContent) {
+          heroContent.style.opacity = opacity;
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   return (
     <div>
-      <HeroSection
-        title="Our Infrastructure"
-        description="Advanced facilities and equipment that enable us to deliver exceptional quality and efficiency."
-      />
+      {/* Custom Hero Section with Bulldozer Image */}
+      <section className="relative overflow-hidden">
+        {/* Hero container with image and content */}
+        <div
+          ref={heroRef}
+          className="relative min-h-[90vh] flex items-center justify-center"
+        >
+          {/* Background image container with mask */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div
+              className="absolute inset-0 h-[120%]"
+              style={{
+                backgroundImage: 'url("/images/infrastructure/bulldozer-410119.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                backgroundRepeat: 'no-repeat',
+                maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+              }}
+            ></div>
+            
+            {/* Subtle dark overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-transparent"></div>
+            
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-900/20 to-blue-900/20 animate-gradient-x"></div>
+          </div>
+          
+          {/* White content area that blends with the image - using only the wavy SVG */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto translate-y-1">
+              <path fill="#ffffff" fillOpacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+          </div>
+          
+          {/* Hero content */}
+          <div className="container px-4 sm:px-6 md:px-8 relative z-10 hero-content">
+            <div className="max-w-3xl mx-auto text-center">
+              {/* Orange badge */}
+              <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white mb-4 animate-bounce">
+                <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span>Excellence in Engineering</span>
+              </div>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+                Our <span className="text-orange-500">Infrastructure</span>
+              </h1>
+              
+              <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
+                Advanced facilities and equipment that enable us to deliver exceptional quality and efficiency.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Content */}
+        {/* <div className="container px-4 sm:px-6 md:px-8 relative z-10 hero-content">
+          <div className="max-w-3xl mx-auto text-center"> */}
+            {/* Orange badge */}
+            {/* <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white mb-4 animate-bounce">
+              <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Excellence in Engineering</span>
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+              Our <span className="text-orange-500">Infrastructure</span>
+            </h1>
+            
+            <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
+              Advanced facilities and equipment that enable us to deliver exceptional quality and efficiency.
+            </p> */}
+            
+            {/* No scroll down indicator */}
+            {/* <div className="hidden">
+              <svg className="h-8 w-8 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
+        </div> */}
+        
+        {/* Floating equipment icons */}
+        {/* <div className="absolute top-1/4 left-1/4 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center animate-float">
+          <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        
+        <div className="absolute bottom-1/3 right-1/4 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center animate-float-delayed">
+          <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          </svg>
+        </div> */}
+      </section>
+      
+      {/* Add custom animations */}
+      <style jsx global>{`
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        
+        @keyframes float-delayed {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        
+        @keyframes gradient-x {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+          animation: float 4s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+        
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 15s ease infinite;
+        }
+      `}</style>
 
-      {/* Main content section */}
-      <section className="py-16">
+      {/* Main content section - with negative margin to overlap with hero section */}
+      <section className="py-2 relative z-20 bg-white">
         <div className="container">
           <div className="prose prose-invert max-w-none">
             <div className="relative mb-12">
@@ -95,10 +254,10 @@ export default function InfrastructurePage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden group">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
                 {/* Decorative elements */}
-                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
                 
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
@@ -122,23 +281,23 @@ export default function InfrastructurePage() {
                       {/* Always show first 5 rows */}
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4" data-label="Machinery">SUB-ARC Automatic Welding Machine</td>
-                        <td className="py-2 text-center" data-label="QTY.">8</td>
+                        <td className="py-2 text-center" data-label="QTY.">16</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Hydraulic Plate bending Machine<br/>(Thickness Capacity: 1) 40 mm. 2) 25 mm. 3) 16 mm</td>
-                        <td className="py-2 text-center">3</td>
+                        <td className="py-2 pr-4">Hydraulic Plate bending Machine<br/>Capacity:  40 mm x 3000 mm Width</td>
+                        <td className="py-2 text-center">4</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">MIG Welding Machine</td>
-                        <td className="py-2 text-center">40</td>
+                        <td className="py-2 text-center">80</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Rectifier Welding Machine</td>
-                        <td className="py-2 text-center">600</td>
+                        <td className="py-2 pr-4">Rectifier Welding Machine<br/>(400 amp & 600 amp)</td>
+                        <td className="py-2 text-center">800</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">Pug Cutting Machines</td>
-                        <td className="py-2 text-center">40</td>
+                        <td className="py-2 text-center">150</td>
                       </tr>
                       
                       {/* Show additional rows if expanded */}
@@ -146,15 +305,19 @@ export default function InfrastructurePage() {
                         <>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Hand Cutting set</td>
-                            <td className="py-2 text-center">100</td>
+                            <td className="py-2 text-center">250</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Pillar type Drilling Machine-Heavy Duty</td>
-                            <td className="py-2 text-center">2</td>
+                            <td className="py-2 text-center">35</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Magnetic Drilling Machines</td>
-                            <td className="py-2 text-center">5</td>
+                            <td className="py-2 text-center">14</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Farana</td>
+                            <td className="py-2 text-center">15</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Hydra 10 Tons Cap</td>
@@ -174,15 +337,31 @@ export default function InfrastructurePage() {
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">DG 62.5 KVA</td>
-                            <td className="py-2 text-center">15</td>
+                            <td className="py-2 text-center">40</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">DG 82.5 KVA</td>
-                            <td className="py-2 text-center">10</td>
+                            <td className="py-2 text-center">36</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Hoist<br/>(Capacity- 2 Tone - 20 Tone) </td>
+                            <td className="py-2 text-center">36</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Ultra Sonic Machine </td>
+                            <td className="py-2 text-center">8</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Hydraulic Jack & Power Pack </td>
+                            <td className="py-2 text-center">12 Set</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">SAW Column Boom </td>
+                            <td className="py-2 text-center">6 Set</td>
                           </tr>
                           <tr className="hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">SAW Rotator</td>
-                            <td className="py-2 text-center">8 Set</td>
+                            <td className="py-2 text-center">30 Set</td>
                           </tr>
                         </>
                       )}
@@ -193,35 +372,35 @@ export default function InfrastructurePage() {
                   <div className="mt-6 text-center">
                     <button
                       onClick={() => toggleTable('mechanical')}
-                      className="group relative px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+                      className="px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {expandedTables.mechanical ? (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                             </svg>
                             Show Less
                           </>
                         ) : (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                             Load More
                           </>
                         )}
                       </span>
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20"></span>
                     </button>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden group">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
                 {/* Decorative elements */}
-                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
                 
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
@@ -244,19 +423,19 @@ export default function InfrastructurePage() {
                     <tbody className="text-white">
                       {/* Always show first 5 rows */}
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Ex-200 Tata Hitachi</td>
+                        <td className="py-2 pr-4">Excavator (Hyundai Ex-200)</td>
+                        <td className="py-2 text-center">6 Nos.</td>
+                      </tr>
+                      <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                        <td className="py-2 pr-4">Excavator 210 L&T Komatsu </td>
+                        <td className="py-2 text-center">4 Nos.</td>
+                      </tr>
+                      <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                        <td className="py-2 pr-4">Excavator (Tata Hitachi Ex-70)</td>
                         <td className="py-2 text-center">2 Nos.</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">PC-200 L&T komatsu</td>
-                        <td className="py-2 text-center">2 Nos.</td>
-                      </tr>
-                      <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Ex-70 Tata Hitachi</td>
-                        <td className="py-2 text-center">2 Nos.</td>
-                      </tr>
-                      <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">JCB</td>
+                        <td className="py-2 pr-4">Backhoe Loader (JCB)</td>
                         <td className="py-2 text-center">4 Nos.</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
@@ -272,56 +451,56 @@ export default function InfrastructurePage() {
                             <td className="py-2 text-center">5 Nos.</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Vibratory Roller L&T case</td>
-                            <td className="py-2 text-center">1 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Grador 405 Komatsu</td>
-                            <td className="py-2 text-center">1 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Dozor D-60 Komatsu</td>
-                            <td className="py-2 text-center">1 Nos.</td>
+                            <td className="py-2 pr-4">Vibratory Roller B.T</td>
+                            <td className="py-2 text-center">2 Nos.</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Tractor Dozor John deer 5 5 HP</td>
+                            <td className="py-2 text-center">5 Nos.</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Tractor (Eicher) with Trolley</td>
+                            <td className="py-2 text-center">5 Nos.</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Concrete Mixture cum/40hr</td>
                             <td className="py-2 text-center">1 Nos.</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Tractor with Trolley Eicher</td>
-                            <td className="py-2 text-center">1 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Concrete Mixture Fisa enterprises</td>
-                            <td className="py-2 text-center">1 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Water tankers Local made</td>
-                            <td className="py-2 text-center">2 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Centering Material Local Made</td>
-                            <td className="py-2 text-center">2000 M2</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Vibratory Needle Fisa enterprises</td>
+                            <td className="py-2 pr-4">Water tankers Local made 500ltr</td>
                             <td className="py-2 text-center">6 Nos.</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Centering Material</td>
+                            <td className="py-2 text-center">5000 M2</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Vibratory Needle (Fisa enterprises)</td>
+                            <td className="py-2 text-center">20 Nos.</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">RM-1050-Concrete Mixer Universal</td>
-                            <td className="py-2 text-center">1 Nos.</td>
+                            <td className="py-2 text-center">4 Nos</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">Self loder 2 Cum. Ajax fiori Eng.</td>
-                            <td className="py-2 text-center">1 Nos.</td>
-                          </tr>
-                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Nos. Trimble Make Total station</td>
                             <td className="py-2 text-center">2 Nos.</td>
                           </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Total station (Sokkia/Nikon)</td>
+                            <td className="py-2 text-center">6 Nos.</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Auto Level (Sokkia)</td>
+                            <td className="py-2 text-center">10 Nos.</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">Dewatering Pump (Elect) 10/20 HP</td>
+                            <td className="py-2 text-center">15 Nos.</td>
+                          </tr>
                           <tr className="hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Sokya Make therolite Machine</td>
-                            <td className="py-2 text-center">5 Nos.</td>
+                            <td className="py-2 pr-4">D.G Set 82.5 Kva</td>
+                            <td className="py-2 text-center">6 Nos.</td>
                           </tr>
                         </>
                       )}
@@ -332,26 +511,26 @@ export default function InfrastructurePage() {
                   <div className="mt-6 text-center">
                     <button
                       onClick={() => toggleTable('civil')}
-                      className="group relative px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+                      className="px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {expandedTables.civil ? (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                             </svg>
                             Show Less
                           </>
                         ) : (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                             Load More
                           </>
                         )}
                       </span>
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20"></span>
                     </button>
                   </div>
                 </div>
@@ -374,10 +553,10 @@ export default function InfrastructurePage() {
               </div>
             </div>
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
-  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden group">
+  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
     {/* Decorative elements */}
-    <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-    <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+    <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+    <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
     
     {/* Icon and title */}
     <div className="flex items-center mb-6">
@@ -402,23 +581,23 @@ export default function InfrastructurePage() {
                       {/* Always show first 5 rows */}
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">1. SITE INCHARGE</td>
-                        <td className="py-2 text-center">8</td>
+                        <td className="py-2 text-center">12</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">2. ENGINEER</td>
-                        <td className="py-2 text-center">14</td>
+                        <td className="py-2 text-center">40</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">3. QUALITY ENGINEER</td>
-                        <td className="py-2 text-center">10</td>
+                        <td className="py-2 text-center">15</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">4. SAFETY ENGINEER</td>
-                        <td className="py-2 text-center">8</td>
+                        <td className="py-2 text-center">15</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">5. SUPERVISOR</td>
-                        <td className="py-2 text-center">40</td>
+                        <td className="py-2 text-center">60</td>
                       </tr>
                       
                       {/* Show additional rows if expanded */}
@@ -430,7 +609,7 @@ export default function InfrastructurePage() {
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">7. STORE KEEPER</td>
-                            <td className="py-2 text-center">9</td>
+                            <td className="py-2 text-center">15</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">8. ACCOUNTANT</td>
@@ -438,10 +617,14 @@ export default function InfrastructurePage() {
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">9. ADMINISTRATOR</td>
-                            <td className="py-2 text-center">6</td>
+                            <td className="py-2 text-center">15</td>
+                          </tr>
+                          <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
+                            <td className="py-2 pr-4">10. SURVEYOR</td>
+                            <td className="py-2 text-center">5</td>
                           </tr>
                           <tr className="hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">10. PURCHASER</td>
+                            <td className="py-2 pr-4">11. PURCHASER</td>
                             <td className="py-2 text-center">5</td>
                           </tr>
                         </>
@@ -453,34 +636,34 @@ export default function InfrastructurePage() {
                   <div className="mt-6 text-center">
                     <button
                       onClick={() => toggleTable('staff')}
-                      className="group relative px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+                      className="px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {expandedTables.staff ? (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                             </svg>
                             Show Less
                           </>
                         ) : (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                             Load More
                           </>
                         )}
                       </span>
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20"></span>
                     </button>
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden group">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
                 {/* Decorative elements */}
-                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full group-hover:scale-125 transition-transform duration-500"></div>
-                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
                 
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
@@ -504,19 +687,19 @@ export default function InfrastructurePage() {
                       {/* Always show first 5 rows */}
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">1. FORMAN</td>
-                        <td className="py-2 text-center">15</td>
+                        <td className="py-2 text-center">20</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">2. FABARICATOR</td>
-                        <td className="py-2 text-center">24</td>
+                        <td className="py-2 text-center">35</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">3. FITTER</td>
-                        <td className="py-2 text-center">38</td>
+                        <td className="py-2 text-center">65</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">4. WELDER</td>
-                        <td className="py-2 text-center">170</td>
+                        <td className="py-2 text-center">250</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">5. GRINDER</td>
@@ -528,7 +711,7 @@ export default function InfrastructurePage() {
                         <>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">6. GASS CUTTER</td>
-                            <td className="py-2 text-center">45</td>
+                            <td className="py-2 text-center">70</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">7. RIGGER</td>
@@ -536,7 +719,7 @@ export default function InfrastructurePage() {
                           </tr>
                           <tr className="hover:bg-steel-800/30 transition-colors">
                             <td className="py-2 pr-4">8. HELPER</td>
-                            <td className="py-2 text-center">400</td>
+                            <td className="py-2 text-center">20</td>
                           </tr>
                         </>
                       )}
@@ -547,26 +730,26 @@ export default function InfrastructurePage() {
                   <div className="mt-6 text-center">
                     <button
                       onClick={() => toggleTable('worker')}
-                      className="group relative px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden transition-all duration-300 hover:bg-orange-600 hover:shadow-lg"
+                      className="px-6 py-3 bg-orange-500 text-white rounded-md shadow-md overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {expandedTables.worker ? (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                             </svg>
                             Show Less
                           </>
                         ) : (
                           <>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                             Load More
                           </>
                         )}
                       </span>
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                      <span className="absolute bottom-0 left-0 w-full h-1 bg-white opacity-20"></span>
                     </button>
                   </div>
                 </div>
@@ -581,28 +764,28 @@ export default function InfrastructurePage() {
               <h3 className="text-2xl font-semibold mb-8 text-center text-white">Our Capabilities at a Glance</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className="text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={25} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Years of Experience</div>
                 </div>
                 
-                <div className="text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={800} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Skilled Workforce</div>
                 </div>
                 
-                <div className="text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={100} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Heavy Machinery</div>
                 </div>
                 
-                <div className="text-center transform transition-all duration-300 hover:scale-105">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={500} suffix="+" duration={2.5} />
                   </div>

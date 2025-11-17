@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import CountUp from '../../../components/CountUp';
+
 
 // Team members data with actual images
 const teamMembers = [
@@ -33,6 +35,9 @@ const teamMembers = [
 
 export default function AboutPage() {
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+  const [lineProgress, setLineProgress] = useState(0);
+
   
   // Parallax effect for hero section
   useEffect(() => {
@@ -47,6 +52,23 @@ export default function AboutPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+  // Animate line progress
+  const lineInterval = setInterval(() => {
+    setLineProgress(prev => (prev >= 100 ? 0 : prev + 0.5));
+  }, 30);
+
+  // Cycle through cards
+  const cardInterval = setInterval(() => {
+    setActiveCard(prev => (prev + 1) % 3);
+  }, 4000);
+
+  return () => {
+    clearInterval(lineInterval);
+    clearInterval(cardInterval);
+  };
+}, []);
 
   return (
     <div className="bg-white min-h-screen">
@@ -81,25 +103,33 @@ export default function AboutPage() {
                 <div className="grid grid-cols-2 gap-6 mt-12">
                   {/* Stat Box 1 */}
                   <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="text-4xl font-bold text-gray-900">30+</h3>
+                    <h3 className="text-4xl font-bold text-gray-900">
+                      <CountUp end={30} suffix="+" duration={60} />
+                    </h3>
                     <p className="text-gray-500">Years in Industry</p>
                   </div>
                   
                   {/* Stat Box 2 */}
                   <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="text-4xl font-bold text-gray-900">500+</h3>
+                    <h3 className="text-4xl font-bold text-gray-900">
+                      <CountUp end={500} suffix="+" duration={10} />
+                    </h3>
                     <p className="text-gray-500">Projects Delivered</p>
                   </div>
                   
                   {/* Stat Box 3 */}
                   <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="text-4xl font-bold text-gray-900">150+</h3>
+                    <h3 className="text-4xl font-bold text-gray-900">
+                      <CountUp end={150} suffix="+" duration={10} />
+                    </h3>
                     <p className="text-gray-500">Skilled Professionals</p>
                   </div>
                   
                   {/* Stat Box 4 */}
                   <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="text-4xl font-bold text-gray-900">15+</h3>
+                    <h3 className="text-4xl font-bold text-gray-900">
+                      <CountUp end={15} suffix="+" duration={10} />
+                    </h3>
                     <p className="text-gray-500">Industry Sectors</p>
                   </div>
                 </div>
@@ -114,7 +144,7 @@ export default function AboutPage() {
                     <img
                       src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO%20.jpg"
                       alt="Virendra Singh - Founder & CEO"
-                      className="w-full h-[600px] object-cover"
+                      className="w-full h-[650px] object-cover"
                     />
                   </div>
                   
@@ -287,96 +317,251 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Journey</h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">From humble beginnings to industry leadership</p>
-            
-            {/* Interactive timeline */}
-            <div className="relative max-w-5xl mx-auto py-12">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {/* 1995 Card - Left side */}
-                <div className="md:col-start-1 md:col-end-2 relative">
-                  <div className="bg-gradient-to-b from-gray-50 to-white border border-gray-200 p-8 rounded-2xl shadow-sm text-left">
-                    {/* Timeline dot */}
-                    <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-orange-500 border-4 border-white z-10 md:block hidden"></div>
-                    
-                    <div className="flex items-center mb-4">
-                      <div className="bg-orange-500 p-3 rounded-full text-white mr-3 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900">1995</h3>
-                        <p className="text-gray-600">Foundation & Vision</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mt-4">
-                      <span className="text-orange-600 font-semibold">VEERU ENGINEERING & INFRA</span> was
-                      established in 1995 with unwavering dedication and
-                      determination to offer quality Structural Steel Fabrication
-                      and Erection Work.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Empty space for alignment */}
-                <div className="md:col-start-2 md:col-end-3 md:h-20"></div>
-                
-                {/* 2005 Card - Right side, slightly lower */}
-                <div className="md:col-start-2 md:col-end-3 relative md:-mt-16">
-                  <div className="bg-gradient-to-b from-gray-50 to-white border border-gray-200 p-8 rounded-2xl shadow-sm text-left">
-                    {/* Timeline dot */}
-                    <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-orange-500 border-4 border-white z-10 md:block hidden"></div>
-                    
-                    <div className="flex items-center mb-4">
-                      <div className="bg-orange-500 p-3 rounded-full text-white mr-3 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900">2005</h3>
-                        <p className="text-gray-600">Expansion & Growth</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mt-4">
-                      By 2005, we had expanded our operations significantly, taking on larger projects and building a reputation for excellence in the industry. Our team grew to include more specialized engineers and technicians.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Today Card - Left side */}
-                <div className="md:col-start-1 md:col-end-2 relative">
-                  <div className="bg-gradient-to-b from-gray-50 to-white border border-gray-200 p-8 rounded-2xl shadow-sm text-left">
-                    {/* Timeline dot */}
-                    <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-orange-500 border-4 border-white z-10 md:block hidden"></div>
-                    
-                    <div className="flex items-center mb-4">
-                      <div className="bg-orange-500 p-3 rounded-full text-white mr-3 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900">Today</h3>
-                        <p className="text-gray-600">Industry Leadership</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 mt-4">
-                      Today, we have achieved a respectable position for
-                      completing Heavy Equipment works as per client specifications.
-                      Our strategic approach enables us to handle projects with
-                      perfection and innovation.
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="mb-16 text-center bg-gradient-to-b from-white to-gray-50 py-16">
+  <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Journey</h2>
+  <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">From humble beginnings to industry leadership</p>
+  
+  {/* Interactive timeline */}
+  <div className="relative max-w-5xl mx-auto py-12 px-4">
+    {/* Animated Timeline line with gradient and glow */}
+    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 overflow-hidden">
+      {/* Animated gradient overlay */}
+      <div 
+        className="absolute top-0 left-0 w-full bg-gradient-to-b from-orange-500 via-orange-400 to-transparent transition-all duration-300"
+        style={{ 
+          height: `${lineProgress}%`,
+          boxShadow: '0 0 20px rgba(249, 115, 22, 0.5)'
+        }}
+      ></div>
+      
+      {/* Pulsing dot at the end of line */}
+      <div 
+        className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-orange-500 animate-pulse"
+        style={{ 
+          top: `${lineProgress}%`,
+          boxShadow: '0 0 15px rgba(249, 115, 22, 0.8)'
+        }}
+      ></div>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {/* 1995 Card - Left side */}
+      <div className="md:col-start-1 md:col-end-2 relative md:pr-8" onMouseEnter={() => setActiveCard(0)}>
+        <div 
+          className={`bg-gradient-to-br ${
+            activeCard === 0
+              ? 'from-orange-50 to-white border-orange-300 shadow-2xl scale-105' 
+              : 'from-gray-50 to-white border-gray-200 shadow-sm'
+          } border-2 p-8 rounded-2xl text-left transition-all duration-500 transform hover:scale-105 hover:shadow-2xl`}
+          style={{
+            animation: activeCard === 0 ? 'cardPulse 2s ease-in-out infinite' : 'none'
+          }}
+        >
+          {/* Animated Timeline dot */}
+          <div 
+            className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-white z-10 md:block hidden transition-all duration-500"
+            style={{
+              backgroundColor: activeCard === 0 ? '#f97316' : '#9ca3af',
+              boxShadow: activeCard === 0 ? '0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(249, 115, 22, 0.4)' : 'none',
+              animation: activeCard === 0 ? 'dotPulse 1.5s ease-in-out infinite' : 'none'
+            }}
+          >
+            {/* Ripple effect */}
+            {activeCard === 0 && (
+              <>
+                <div className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75"></div>
+                <div className="absolute inset-0 rounded-full bg-orange-300 animate-ping opacity-50" style={{ animationDelay: '0.3s' }}></div>
+              </>
+            )}
+          </div>
+          
+          <div className="flex items-center mb-4">
+            <div 
+              className={`p-3 rounded-full text-white mr-3 shadow-lg transition-all duration-500 ${
+                activeCard === 0
+                  ? 'bg-gradient-to-br from-orange-500 to-orange-600 animate-bounce' 
+                  : 'bg-gray-400'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <div>
+              <h3 className={`text-2xl font-bold transition-colors duration-500 ${
+                activeCard === 0 ? 'text-orange-600' : 'text-gray-900'
+              }`}>1995</h3>
+              <p className="text-gray-600">Foundation & Vision</p>
             </div>
           </div>
+          <p className="text-gray-700 mt-4 leading-relaxed">
+            <span className="text-orange-600 font-semibold">VEERU ENGINEERING & INFRA</span> was
+            established in 1995 with unwavering dedication and
+            determination to offer quality Structural Steel Fabrication
+            and Erection Work.
+          </p>
+          
+          {/* Animated corner accent */}
+          {activeCard === 0 && (
+            <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-orange-400 to-transparent opacity-20 transform rotate-45 translate-x-10 -translate-y-10"></div>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {/* Empty space for alignment */}
+      <div className="md:col-start-2 md:col-end-3 md:h-20 hidden md:block"></div>
+      
+      {/* 2005 Card - Right side, slightly lower */}
+      <div className="md:col-start-2 md:col-end-3 relative md:-mt-16 md:pl-8" onMouseEnter={() => setActiveCard(1)}>
+        <div 
+          className={`bg-gradient-to-br ${
+            activeCard === 1
+              ? 'from-orange-50 to-white border-orange-300 shadow-2xl scale-105' 
+              : 'from-gray-50 to-white border-gray-200 shadow-sm'
+          } border-2 p-8 rounded-2xl text-left transition-all duration-500 transform hover:scale-105 hover:shadow-2xl`}
+          style={{
+            animation: activeCard === 1 ? 'cardPulse 2s ease-in-out infinite' : 'none'
+          }}
+        >
+          {/* Animated Timeline dot */}
+          <div 
+            className="absolute left-0 -translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-white z-10 md:block hidden transition-all duration-500"
+            style={{
+              backgroundColor: activeCard === 1 ? '#f97316' : '#9ca3af',
+              boxShadow: activeCard === 1 ? '0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(249, 115, 22, 0.4)' : 'none',
+              animation: activeCard === 1 ? 'dotPulse 1.5s ease-in-out infinite' : 'none'
+            }}
+          >
+            {/* Ripple effect */}
+            {activeCard === 1 && (
+              <>
+                <div className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75"></div>
+                <div className="absolute inset-0 rounded-full bg-orange-300 animate-ping opacity-50" style={{ animationDelay: '0.3s' }}></div>
+              </>
+            )}
+          </div>
+          
+          <div className="flex items-center mb-4">
+            <div 
+              className={`p-3 rounded-full text-white mr-3 shadow-lg transition-all duration-500 ${
+                activeCard === 1
+                  ? 'bg-gradient-to-br from-orange-500 to-orange-600 animate-bounce' 
+                  : 'bg-gray-400'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className={`text-2xl font-bold transition-colors duration-500 ${
+                activeCard === 1 ? 'text-orange-600' : 'text-gray-900'
+              }`}>2005</h3>
+              <p className="text-gray-600">Expansion & Growth</p>
+            </div>
+          </div>
+          <p className="text-gray-700 mt-4 leading-relaxed">
+            By 2005, we had expanded our operations significantly, taking on larger projects and building a reputation for excellence in the industry. Our team grew to include more specialized engineers and technicians.
+          </p>
+          
+          {/* Animated corner accent */}
+          {activeCard === 1 && (
+            <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-orange-400 to-transparent opacity-20 transform rotate-45 translate-x-10 -translate-y-10"></div>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {/* Today Card - Left side */}
+      <div className="md:col-start-1 md:col-end-2 relative" onMouseEnter={() => setActiveCard(2)}>
+        <div 
+          className={`bg-gradient-to-br ${
+            activeCard === 2
+              ? 'from-orange-50 to-white border-orange-300 shadow-2xl scale-105' 
+              : 'from-gray-50 to-white border-gray-200 shadow-sm'
+          } border-2 p-8 rounded-2xl text-left transition-all duration-500 transform hover:scale-105 hover:shadow-2xl`}
+          style={{
+            animation: activeCard === 2 ? 'cardPulse 2s ease-in-out infinite' : 'none'
+          }}
+        >
+          {/* Animated Timeline dot */}
+          <div 
+            className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-4 border-white z-10 md:block hidden transition-all duration-500"
+            style={{
+              backgroundColor: activeCard === 2 ? '#f97316' : '#9ca3af',
+              boxShadow: activeCard === 2 ? '0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(249, 115, 22, 0.4)' : 'none',
+              animation: activeCard === 2 ? 'dotPulse 1.5s ease-in-out infinite' : 'none'
+            }}
+          >
+            {/* Ripple effect */}
+            {activeCard === 2 && (
+              <>
+                <div className="absolute inset-0 rounded-full bg-orange-400 animate-ping opacity-75"></div>
+                <div className="absolute inset-0 rounded-full bg-orange-300 animate-ping opacity-50" style={{ animationDelay: '0.3s' }}></div>
+              </>
+            )}
+          </div>
+          
+          <div className="flex items-center mb-4">
+            <div 
+              className={`p-3 rounded-full text-white mr-3 shadow-lg transition-all duration-500 ${
+                activeCard === 2
+                  ? 'bg-gradient-to-br from-orange-500 to-orange-600 animate-bounce' 
+                  : 'bg-gray-400'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className={`text-2xl font-bold transition-colors duration-500 ${
+                activeCard === 2 ? 'text-orange-600' : 'text-gray-900'
+              }`}>Today</h3>
+              <p className="text-gray-600">Industry Leadership</p>
+            </div>
+          </div>
+          <p className="text-gray-700 mt-4 leading-relaxed">
+            Today, we have achieved a respectable position for
+            completing Heavy Equipment works as per client specifications.
+            Our strategic approach enables us to handle projects with
+            perfection and innovation.
+          </p>
+          
+          {/* Animated corner accent */}
+          {activeCard === 2 && (
+            <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-orange-400 to-transparent opacity-20 transform rotate-45 translate-x-10 -translate-y-10"></div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style jsx>{`
+    @keyframes cardPulse {
+      0%, 100% {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      50% {
+        box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.25), 0 10px 10px -5px rgba(249, 115, 22, 0.1);
+      }
+    }
+    
+    @keyframes dotPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+  `}</style>
+</div>
 
 
           {/* Leadership section - light theme */}

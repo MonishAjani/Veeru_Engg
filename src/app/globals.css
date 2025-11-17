@@ -38,6 +38,49 @@ h1, h2, h3, h4, h5, h6 {
   transform-style: preserve-3d;
 }
 
+/* Enhanced 3D card animations for prestigious projects */
+.card-stack-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card-stack-item {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Card rotation animations */
+@keyframes cardRotateIn {
+  from {
+    transform: perspective(1000px) rotateX(30deg) translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(1000px) rotateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cardRotateOut {
+  from {
+    transform: perspective(1000px) rotateX(0) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: perspective(1000px) rotateX(-30deg) translateY(-50px);
+    opacity: 0;
+  }
+}
+
+.card-enter {
+  animation: cardRotateIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.card-exit {
+  animation: cardRotateOut 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
 /* Animation keyframes */
 @keyframes float {
   0% {

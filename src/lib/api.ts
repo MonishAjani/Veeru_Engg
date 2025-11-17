@@ -118,8 +118,21 @@ export interface PaginatedResponse<T> {
 // Function to fetch services from the Django backend
 export async function getServices(): Promise<Service[]> {
   try {
-    const response = await apiFetch<PaginatedResponse<Service>>('/services/');
-    return response.results || [];
+    let allResults: Service[] = [];
+    let nextUrl: string | null = '/services/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<Service>>(nextUrl);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching services:', error);
     return []; // Return empty array on error
@@ -130,9 +143,22 @@ export async function getServices(): Promise<Service[]> {
 export async function getCertificates(): Promise<Certificate[]> {
   try {
     console.log('Fetching certificates');
-    const response = await apiFetch<PaginatedResponse<Certificate>>('/certificates/');
-    console.log('Certificates response:', response);
-    return response.results || [];
+    let allResults: Certificate[] = [];
+    let nextUrl: string | null = '/certificates/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<Certificate>>(nextUrl);
+      console.log('Certificates response:', response);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching certificates:', error);
     return []; // Return empty array on error
@@ -153,9 +179,22 @@ export async function getCertificate(id: number): Promise<Certificate | null> {
 export async function getProjects(): Promise<Project[]> {
   try {
     console.log('Fetching projects from the Projects table');
-    const response = await apiFetch<PaginatedResponse<Project>>('/projects/');
-    console.log('Projects response:', response);
-    return response.results || [];
+    let allResults: Project[] = [];
+    let nextUrl: string | null = '/projects/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<Project>>(nextUrl);
+      console.log('Projects response:', response);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching projects:', error);
     return []; // Return empty array on error
@@ -166,9 +205,22 @@ export async function getProjects(): Promise<Project[]> {
 export async function getLiveProjects(): Promise<LiveProject[]> {
   try {
     console.log('Fetching live projects');
-    const response = await apiFetch<PaginatedResponse<LiveProject>>('/projects/live/');
-    console.log('Live projects response:', response);
-    return response.results || [];
+    let allResults: LiveProject[] = [];
+    let nextUrl: string | null = '/projects/live/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<LiveProject>>(nextUrl);
+      console.log('Live projects response:', response);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching live projects:', error);
     return []; // Return empty array on error
@@ -179,9 +231,22 @@ export async function getLiveProjects(): Promise<LiveProject[]> {
 export async function getCompletedProjects(): Promise<CompletedProject[]> {
   try {
     console.log('Fetching completed projects');
-    const response = await apiFetch<PaginatedResponse<CompletedProject>>('/projects/completed/');
-    console.log('Completed projects response:', response);
-    return response.results || [];
+    let allResults: CompletedProject[] = [];
+    let nextUrl: string | null = '/projects/completed/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<CompletedProject>>(nextUrl);
+      console.log('Completed projects response:', response);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching completed projects:', error);
     return []; // Return empty array on error
@@ -222,9 +287,22 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
 export async function getPrestigiousProjects(): Promise<PrestigiousProject[]> {
   try {
     console.log('Fetching prestigious projects');
-    const response = await apiFetch<PaginatedResponse<PrestigiousProject>>('/prestigious-projects/');
-    console.log('Prestigious projects response:', response);
-    return response.results || [];
+    let allResults: PrestigiousProject[] = [];
+    let nextUrl: string | null = '/prestigious-projects/';
+    
+    // Fetch all pages of results
+    while (nextUrl) {
+      const response = await apiFetch<PaginatedResponse<PrestigiousProject>>(nextUrl);
+      console.log('Prestigious projects response:', response);
+      
+      if (response.results && response.results.length > 0) {
+        allResults = [...allResults, ...response.results];
+      }
+      
+      nextUrl = response.next ? response.next.replace(API_BASE, '') : null;
+    }
+    
+    return allResults;
   } catch (error) {
     console.error('Error fetching prestigious projects:', error);
     return []; // Return empty array on error

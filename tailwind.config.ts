@@ -53,10 +53,65 @@ const config: Config = {
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
         '5xl': ['3rem', { lineHeight: '1.2' }],
         '6xl': ['3.75rem', { lineHeight: '1.1' }],
+      },
+      // Add perspective and transform utilities for 3D effects
+      perspective: {
+        'none': 'none',
+        '500': '500px',
+        '1000': '1000px',
+        '2000': '2000px',
+      },
+      rotate: {
+        'y-1': 'rotateY(1deg)',
+        'y-2': 'rotateY(2deg)',
+        'y-3': 'rotateY(3deg)',
+        'y-5': 'rotateY(5deg)',
+        'y-10': 'rotateY(10deg)',
+        'y-0': 'rotateY(0deg)',
+      },
+      transitionDuration: {
+        '1500': '1500ms',
+        '2000': '2000ms',
       }
     }
   },
-  plugins: []
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.perspective-none': {
+          perspective: 'none',
+        },
+        '.perspective-500': {
+          perspective: '500px',
+        },
+        '.perspective-1000': {
+          perspective: '1000px',
+        },
+        '.perspective-2000': {
+          perspective: '2000px',
+        },
+        '.rotate-y-0': {
+          transform: 'rotateY(0deg)',
+        },
+        '.rotate-y-1': {
+          transform: 'rotateY(1deg)',
+        },
+        '.rotate-y-2': {
+          transform: 'rotateY(2deg)',
+        },
+        '.rotate-y-3': {
+          transform: 'rotateY(3deg)',
+        },
+        '.rotate-y-5': {
+          transform: 'rotateY(5deg)',
+        },
+        '.rotate-y-10': {
+          transform: 'rotateY(10deg)',
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ]
 }
 
 export default config

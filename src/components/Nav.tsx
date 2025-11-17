@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { useState } from 'react';
 
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/infrastructure', label: 'Infrastructure' },
   { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
   { href: '/certificates', label: 'Certifications' },
-  { href: '/enquiry', label: 'Enquiry' },
 ]
 
 export default function Nav() {
