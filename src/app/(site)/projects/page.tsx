@@ -396,7 +396,7 @@ export default function ProjectsPage() {
               </div>
               <div>
                 <div className="text-white text-4xl font-bold flex items-center">
-                  <CountUp end={500} duration={2} className="text-4xl text-white" />+
+                  <CountUp end={120} duration={2} className="text-4xl text-white" />+
                 </div>
                 <div className="text-gray-400">Projects Successfully Completed</div>
               </div>

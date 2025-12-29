@@ -57,7 +57,7 @@ export default function Footer() {
               </ul>
               <ul className="space-y-2">
                 <li><Link href="/certificates" className="text-gray-300 hover:text-white transition-colors block py-1">Certifications</Link></li>
-                <li><Link href="/enquiry" className="text-gray-300 hover:text-white transition-colors block py-1">Enquiry</Link></li>
+                <li><Link href="/contact" className="text-gray-300 hover:text-white transition-colors block py-1">Contact Us</Link></li>
               </ul>
             </div>
           </div>

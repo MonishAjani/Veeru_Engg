@@ -112,7 +112,7 @@ export default function AboutPage() {
                   {/* Stat Box 2 */}
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-4xl font-bold text-gray-900">
-                      <CountUp end={500} suffix="+" duration={10} />
+                      <CountUp end={120} suffix="+" duration={10} />
                     </h3>
                     <p className="text-gray-500">Projects Delivered</p>
                   </div>

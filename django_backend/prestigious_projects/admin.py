@@ -8,7 +8,7 @@ class PrestigiousProjectAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Project Information', {
-            'fields': ('name', 'location', 'quantity')
+            'fields': ('name', 'details', 'work_details', 'location', 'quantity', 'client')
         }),
         ('Image', {
             'fields': ('image',)

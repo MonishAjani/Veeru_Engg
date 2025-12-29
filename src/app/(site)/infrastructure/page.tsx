@@ -28,12 +28,12 @@ export default function InfrastructurePage() {
         const scrollPosition = window.scrollY;
         const heroElement = heroRef.current;
         
-        // Parallax effect for background image
-        const parallaxSpeed = 0.5;
+        // Reduced parallax effect to ensure image remains visible
+        const parallaxSpeed = 0.2;
         const yPos = scrollPosition * parallaxSpeed;
         
-        // Apply parallax effect to background image
-        heroElement.style.backgroundPosition = `center ${-yPos}px`;
+        // Apply gentler parallax effect to background image
+        heroElement.style.backgroundPosition = `center calc(50% - ${yPos}px)`;
         
         // Fade out text as user scrolls down
         const opacity = Math.max(1 - scrollPosition / 500, 0);
@@ -55,19 +55,18 @@ export default function InfrastructurePage() {
         {/* Hero container with image and content */}
         <div
           ref={heroRef}
-          className="relative min-h-[90vh] flex items-center justify-center"
+          className="relative min-h-[95vh] flex items-center justify-center"
         >
           {/* Background image container with mask */}
           <div className="absolute inset-0 overflow-hidden">
             <div
-              className="absolute inset-0 h-[120%]"
+              className="absolute inset-0 h-full"
               style={{
-                backgroundImage: 'url("/images/infrastructure/bulldozer-410119.jpg")',
+                backgroundImage: 'url("/images/infrastructure/Veeru Infrastructure Website.png")',
                 backgroundSize: 'cover',
-                backgroundPosition: 'center top',
+                backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
-                maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
+                // Removed mask image to show full image
               }}
             ></div>
             

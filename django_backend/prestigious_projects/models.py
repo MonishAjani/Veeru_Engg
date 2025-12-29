@@ -6,6 +6,7 @@ class PrestigiousProject(models.Model):
     """
     name = models.CharField(max_length=200, help_text="Project name")
     details = models.TextField(help_text="Project description")
+    work_details = models.TextField(blank=True, help_text="Specific work details for the project")
     quantity = models.CharField(max_length=100, blank=True, help_text="Project quantity/scale")
     location = models.CharField(max_length=200, blank=True, help_text="Project location")
     client = models.CharField(max_length=200, blank=True, help_text="Client name")

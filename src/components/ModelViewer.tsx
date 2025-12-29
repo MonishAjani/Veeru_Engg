@@ -25,7 +25,7 @@ export default function ModelViewer({ src, alt, poster, height = '400px', width 
       
       // Create image placeholder (in a real implementation, this would be a 3D canvas)
       const img = document.createElement('img');
-      img.src = poster || '/images/model-placeholder.jpg';
+      img.src = poster || '/images/Veeru Infra Logo.jpg';
       img.alt = alt;
       img.style.width = '100%';
       img.style.height = '100%';

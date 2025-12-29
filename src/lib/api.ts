@@ -96,6 +96,7 @@ export interface PrestigiousProject {
   id: number
   name: string
   details: string
+  work_details?: string
   quantity: string
   location?: string
   client?: string

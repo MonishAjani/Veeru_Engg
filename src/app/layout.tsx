@@ -3,6 +3,11 @@ import type { Metadata, Viewport } from 'next'
 export const metadata: Metadata = {
   title: 'Veeru Engineering — Industrial Fabrication & EPC Partner',
   description: 'Showcasing credibility, scale, projects, infrastructure, and compliance.',
+  icons: {
+    icon: '/images/Veeru Infra Logo.png',
+    apple: '/images/Veeru Infra Logo.png',
+    shortcut: '/images/Veeru Infra Logo.png'
+  }
 }
 
 export const viewport: Viewport = {

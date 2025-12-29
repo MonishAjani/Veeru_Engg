@@ -7,7 +7,7 @@ class PrestigiousProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrestigiousProject
         fields = [
-            'id', 'name', 'details', 'quantity', 'location', 'client',
+            'id', 'name', 'details', 'work_details', 'quantity', 'location', 'client',
             'image', 'image_url', 'order', 'is_active', 'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
