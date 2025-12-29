@@ -8,7 +8,8 @@
     "start": "node server.js",
     "start:next": "next start",
     "lint": "next lint",
-    "generate-favicons": "node scripts/generate-favicons.js"
+    "generate-favicons": "node scripts/generate-favicons.js",
+    "verify-images": "node scripts/verify-images.js"
   },
   "dependencies": {
     "next": "14.2.5",

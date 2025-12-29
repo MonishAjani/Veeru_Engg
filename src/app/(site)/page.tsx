@@ -190,7 +190,7 @@ export default function HomePage() {
                 {/* Top Right - Image Card */}
                 <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '360px', width: '224px' }}>
                   <img
-                    src="\images\team\Virendra Singh- Founder & CEO .jpg"
+                    src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO%20.jpg"
                     alt="Expert Team"
                     className="w-full h-full object-cover"
                   />
@@ -226,7 +226,7 @@ export default function HomePage() {
               {/* Image Section */}
               <div className="relative h-56">
                 <img
-                  src="/images/Structural Fabrication.png"
+                  src="/images/Structural%20Fabrication.png"
                   alt="Structural Fabrication"
                   className="w-full h-full object-cover"
                 />
@@ -255,7 +255,7 @@ export default function HomePage() {
               {/* Image Section */}
               <div className="relative h-56">
                 <img
-                  src="/images/Industrial Piping.png"
+                  src="/images/Industrial%20Piping.png"
                   alt="Industrial Piping"
                   className="w-full h-full object-cover"
                 />
@@ -284,7 +284,7 @@ export default function HomePage() {
               {/* Image Section */}
               <div className="relative h-56">
                 <img
-                  src="/images/Heavy Equipments.png"
+                  src="/images/Heavy%20Equipments.png"
                   alt="Heavy Equipment"
                   className="w-full h-full object-cover"
                   onError={(e) => {
