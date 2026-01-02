@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import ResponsiveImage from './ResponsiveImage';
 
 interface TeamMember {
   id: number;
@@ -69,23 +70,23 @@ export default function TeamSlider({ members }: TeamSliderProps) {
   return (
     <div className="relative overflow-hidden">
       {/* Main slider */}
-      <div 
+      <div
         ref={sliderRef}
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {members.map((member) => (
-          <div 
-            key={member.id} 
+          <div
+            key={member.id}
             className="min-w-full px-4"
           >
             <div className="bg-steel-800/30 rounded-xl overflow-hidden border border-steel-700/50">
               <div className="aspect-[4/3] overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={member.image} 
+                <ResponsiveImage
+                  src={member.image}
                   alt={member.name}
-                  className="w-full h-full object-cover"
+                  aspectRatio="4-3"
+                  objectFit="cover"
                 />
               </div>
               <div className="p-6">
@@ -98,7 +99,7 @@ export default function TeamSlider({ members }: TeamSliderProps) {
       </div>
 
       {/* Navigation arrows */}
-      <button 
+      <button
         onClick={goToPrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
         aria-label="Previous slide"
@@ -107,7 +108,7 @@ export default function TeamSlider({ members }: TeamSliderProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
-      <button 
+      <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10"
         aria-label="Next slide"

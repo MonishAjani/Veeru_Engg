@@ -1,19 +1,50 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    RewriteRule ^(.*)$ passenger_wsgi.py/$1 [QSA,L]
+# Enable URL rewriting
+RewriteEngine On
+
+# Serve static and media files directly
+RewriteRule ^static/(.*)$ static/$1 [L]
+RewriteRule ^media/(.*)$ media/$1 [L]
+
+# Pass all other requests to the WSGI application
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ passenger_wsgi.py/$1 [QSA,L]
+
+# Set MIME types for common file types
+<IfModule mod_mime.c>
+    AddType image/png .png
+    AddType image/jpeg .jpg .jpeg
+    AddType image/gif .gif
+    AddType image/svg+xml .svg
+    AddType text/css .css
+    AddType text/javascript .js
+    AddType application/json .json
 </IfModule>
 
-# Serve static files directly
-<IfModule mod_alias.c>
-    Alias /static/ /home/username/yourdomain.com/backend/staticfiles/
-    Alias /media/ /home/username/yourdomain.com/backend/media/
+# Enhanced CORS configuration - Method 1
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "https://veeruengineering.com"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE, PATCH"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, X-CSRFToken"
+    Header always set Access-Control-Allow-Credentials "true"
+    Header always set Access-Control-Max-Age "1728000"
+    
+    # Handle preflight OPTIONS requests
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
 </IfModule>
 
-<Directory /home/username/yourdomain.com/backend/staticfiles>
-    Require all granted
-</Directory>
+# Alternative CORS configuration - Method 2 (if Method 1 doesn't work)
+<IfModule mod_headers.c>
+    SetEnvIf Origin "https://veeruengineering.com" AccessControlAllowOrigin=$0
+    Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE, PATCH"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, X-CSRFToken"
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Max-Age "1728000"
+</IfModule>
 
-<Directory /home/username/yourdomain.com/backend/media>
-    Require all granted
-</Directory>
+# Handle OPTIONS requests for CORS preflight
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]

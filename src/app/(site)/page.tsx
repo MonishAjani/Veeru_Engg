@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getPrestigiousProjects, PrestigiousProject } from '../../lib/api';
 import Link from 'next/link';
 import CountUp from '../../components/CountUp';
+import ResponsiveImage, { ResponsivePicture } from '../../components/ResponsiveImage';
 
 export default function HomePage() {
   const [prestigiousProjects, setPrestigiousProjects] = useState<PrestigiousProject[]>([]);
@@ -53,12 +54,13 @@ export default function HomePage() {
     return [
       {
         id: 1,
-        name: "AMRUTHA CONSTRUCTIONS PVT.LTD.",
-        details: "Structural fabrication and erection for industrial facility including heavy equipment installation and piping work.",
-        quantity: "2000 MT",
-        location: "Nagpur, Maharashtra",
-        client: "Amrutha Constructions Pvt. Ltd.",
-        image_url: "/images/projects/Jindal_Power_Plant.jpg",
+        name: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED",
+        details: "Pipe Fabrication 3000 dia.",
+        work_details: "Pipe Fabrication 3000 dia.",
+        quantity: "17000 MT",
+        location: "NANDAWADAGI DRIP IRRIGATION SCHEME PACKAGE - 1 (BLOCK - A, 12000 HA) PROJECT",
+        client: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED",
+        image_url: "/images/Prestigious Project/Vital/Thumbnail.jpg",
         order: 1,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -66,12 +68,13 @@ export default function HomePage() {
       },
       {
         id: 2,
-        name: "S.S.Fabricators (Engineers & Contractors)",
-        details: "Complete structural steel fabrication and erection for manufacturing plant expansion project.",
-        quantity: "650 MT",
-        location: "Pune, Maharashtra",
-        client: "S.S.Fabricators",
-        image_url: "/images/projects/Power_Project_Koradi.jpg",
+        name: "S.S Fabricators & Manufacturers Pvt. Ltd.",
+        details: "Manufacturing of M.S. Pipes at SB-04 PDN Project, Lower Wardha Radial Gate - fabrication & Erection",
+        work_details: "Manufacturing of M.S. Pipes at SB-04 PDN Project, Lower Wardha Radial Gate - fabrication & Erection",
+        quantity: "10000 MT",
+        location: "Wardha",
+        client: "S.S Fabricators & Manufacturers Pvt. Ltd.",
+        image_url: "/images/Prestigious Project/S.S Fabricators & Manufacturers Pvt. Ltd/Thumbnail.jpg",
         order: 2,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -79,13 +82,42 @@ export default function HomePage() {
       },
       {
         id: 3,
-        name: "Sunil Hitech Engineers Ltd.",
-        details: "Industrial piping and equipment installation for power plant with high-precision requirements.",
-        quantity: "1200 MT",
-        location: "Raipur, Chhattisgarh",
-        client: "Sunil Hitech Engineers Ltd.",
-        image_url: "/images/projects/Sunil_Hitech.jpg",
+        name: "Adani Power Limited",
+        details: "CW, ACW and RW Piping along with fittings, valves and accessories for 2x800 MW (Phase-II) Ultra Super Critical Thermal Power Project, Fabrication, Erection & Painting.",
+        work_details: "CW, ACW and RW Piping along with fittings, valves and accessories for 2x800 MW (Phase-II) Ultra Super Critical Thermal Power Project, Fabrication, Erection & Painting.",
+        quantity: "11000 MT",
+        location: "Raipur",
+        client: "Adani Power Limited",
+        image_url: "/images/Prestigious Project/Adani power Raipur/Thumbnail (1).jpg",
         order: 3,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 4,
+        name: "Jindal Power Project",
+        details: "CW and ACW Pipe, Fabrication, Erection, Commissioning & Painting.",
+        work_details: "CW and ACW Pipe, Fabrication, Erection, Commissioning & Painting.",
+        quantity: "9500 MT",
+        location: "Tamnar, Raigarh – C.G.",
+        client: "Jindal Power Project",
+        image_url: "/images/Prestigious Project/Jindal Power/01 Thumbnail.jpg",
+        order: 4,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 5,
+        name: "AFCONS INFRASTRUCTURE LIMITED",
+        details: "Pile Liner Fabrication Work. TAB Superstructure Fabrication work.",
+        work_details: "Pile Liner Fabrication Work. TAB Superstructure Fabrication work.",
+        quantity: "6400 MT",
+        location: "Maldives",
+        client: "AFCONS INFRASTRUCTURE LIMITED",
+        image_url: "/images/Prestigious Project/AFCONS INFRSTRUCTURE LTD Finalized/01 Thumbnail.jpg",
+        order: 5,
         is_active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
@@ -116,7 +148,7 @@ export default function HomePage() {
               
               {/* Description */}
               <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
-                Expert structural fabrication, industrial piping, and heavy equipment installation 
+                Expert structural fabrication, industrial piping, and heavy equipment installation
                 trusted by leading industries across India.
               </p>
               
@@ -168,10 +200,11 @@ export default function HomePage() {
               <div className="grid grid-cols-2 h-full" style={{ gap: '10px', marginTop: '-35px' }}>
                 {/* Top Left - Construction Cranes Image (Square) */}
                 <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '200px', width: '224px' }}>
-                  <img
+                  <ResponsiveImage
                     src="/images/01 (1).jpg"
                     alt="Construction Cranes"
-                    className="w-full h-full object-cover"
+                    aspectRatio="1-1"
+                    objectFit="cover"
                   />
                 </div>
                 {/* Bottom Left - Orange Card with Expert Team (Rectangle) */}
@@ -186,22 +219,27 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 h-full" style={{ gap: '10px' }}>
-                {/* Top Right - Image Card */}
-                <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '360px', width: '224px' }}>
-                  <img
+              <div className="grid grid-cols-1 h-full flex flex-col items-center" style={{ gap: '10px' }}>
+                {/* Top Right - Image Card - Styled to match reference */}
+                <div className="col-span-2 rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto" style={{ height: '420px', width: '320px' }}>
+                  <ResponsiveImage
                     src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO%20.jpg"
-                    alt="Expert Team"
-                    className="w-full h-full object-cover"
+                    alt="Virendra Singh - Founder & CEO"
+                    aspectRatio="2-3"
+                    objectFit="cover"
+                    priority={true}
+                    focalPoint={{ x: "center", y: "20%" }}
+                    sizes="(max-width: 768px) 100vw, 300px"
                   />
                 </div>
                 
-                {/* Bottom Right - Person in Protective Gear Image (Square) */}
-                <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '200px', width: '224px' }}>
-                  <img
+                {/* Bottom Right - Person in Protective Gear Image (Square) - Adjusted for spacing */}
+                <div className="col-span-2 rounded-2xl overflow-hidden mt-4" style={{ height: '160px', width: '300px' }}>
+                  <ResponsiveImage
                     src="/images/02.jpg"
                     alt="Engineer in Protective Gear"
-                    className="w-full h-full object-cover"
+                    aspectRatio="1-1"
+                    objectFit="cover"
                   />
                 </div>
               </div>
@@ -225,10 +263,11 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <img
+                <ResponsiveImage
                   src="/images/Structural%20Fabrication.png"
                   alt="Structural Fabrication"
-                  className="w-full h-full object-cover"
+                  aspectRatio="16-9"
+                  objectFit="cover"
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -254,10 +293,11 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <img
+                <ResponsiveImage
                   src="/images/Industrial%20Piping.png"
                   alt="Industrial Piping"
-                  className="w-full h-full object-cover"
+                  aspectRatio="16-9"
+                  objectFit="cover"
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -283,13 +323,12 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <img
+                <ResponsiveImage
                   src="/images/Heavy%20Equipments.png"
                   alt="Heavy Equipment"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/02.jpg";
-                  }}
+                  aspectRatio="16-9"
+                  objectFit="cover"
+                  fallbackSrc="/images/02.jpg"
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -419,21 +458,23 @@ export default function HomePage() {
                     className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out"
                   >
                     <div
-                      className="rounded-3xl overflow-hidden transition-all duration-500 max-w-4xl mx-auto shadow-2xl bg-white border-2 border-orange-300"
+                      className="rounded-3xl overflow-hidden transition-all duration-500 max-w-5xl mx-auto shadow-2xl bg-white border-2 border-orange-300"
                     >
                       <div className="flex">
                         {/* Image on Left */}
-                        <div className="w-2/5 bg-gray-200">
-                          <img
-                            src={prestigiousProjects[currentSlide].image_url || '/images/projects/Jindal_Power_Plant.jpg'}
+                        <div className="w-1/2 bg-gray-200">
+                          <ResponsiveImage
+                            src={prestigiousProjects[currentSlide].image_url}
                             alt={prestigiousProjects[currentSlide].name}
-                            className="w-full h-full object-cover"
-                            style={{ height: '350px' }}
+                            aspectRatio="4-3"
+                            objectFit="cover"
+                            priority={true}
+                            fallbackSrc="/images/placeholder.jpg"
                           />
                         </div>
 
                         {/* Content on Right */}
-                        <div className="w-3/5 p-8 flex flex-col justify-between">
+                        <div className="w-1/2 p-8 flex flex-col justify-between">
                           <div>
                             <div className="inline-block bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
                               Project {currentSlide + 1} of {prestigiousProjects.length}

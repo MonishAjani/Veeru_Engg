@@ -1,0 +1,318 @@
+/* Responsive Images CSS */
+
+/* Base responsive image class */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent image distortion */
+.img-contain {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Aspect ratio containers */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+.aspect-ratio-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Common aspect ratios */
+.ratio-16-9 {
+  padding-bottom: 56.25%; /* 16:9 */
+}
+
+.ratio-4-3 {
+  padding-bottom: 75%; /* 4:3 */
+}
+
+.ratio-1-1 {
+  padding-bottom: 100%; /* Square */
+}
+
+.ratio-3-2 {
+  padding-bottom: 66.67%; /* 3:2 */
+}
+
+.ratio-2-3 {
+  padding-bottom: 150%; /* 2:3 (portrait) */
+}
+
+/* Responsive background images */
+.bg-responsive {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-responsive-contain {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Image grid system */
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .img-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* Lazy loading placeholder */
+.lazy-placeholder {
+  background-color: #f0f0f0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive hero images */
+.hero-img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-img {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-img {
+    height: 40vh;
+  }
+}
+
+/* Responsive image cards */
+.img-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.img-card-img {
+  transition: transform 0.3s ease;
+}
+
+.img-card:hover .img-card-img {
+  transform: scale(1.05);
+}
+
+/* Responsive gallery */
+.img-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .img-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .img-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .img-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive image with text overlay */
+.img-overlay-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  color: white;
+  padding: 1rem;
+}
+
+/* Responsive image loading */
+.progressive-img {
+  transition: filter 0.3s ease;
+}
+
+.progressive-img.loading {
+  filter: blur(10px);
+}
+
+/* Picture element for art direction */
+picture {
+  display: block;
+  width: 100%;
+}
+
+picture img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive image grid with different sizes */
+.img-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  gap: 1rem;
+}
+
+.img-masonry-item {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.img-masonry-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive image zoom on hover */
+.img-zoom-container {
+  overflow: hidden;
+}
+
+.img-zoom {
+  transition: transform 0.5s ease;
+}
+
+.img-zoom-container:hover .img-zoom {
+  transform: scale(1.1);
+}
+
+/* Responsive image with caption */
+.img-caption-container {
+  position: relative;
+}
+
+.img-caption {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+/* Responsive image slider */
+.img-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.img-slider-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+/* Responsive image with fallback */
+.img-with-fallback {
+  position: relative;
+}
+
+.img-with-fallback::after {
+  content: attr(data-alt);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+}
+
+.img-with-fallback img:not([src]),
+.img-with-fallback img[src=""],
+.img-with-fallback img.error {
+  opacity: 0;
+}
+
+.img-with-fallback img:not([src]) + .img-with-fallback::after,
+.img-with-fallback img[src=""] + .img-with-fallback::after,
+.img-with-fallback img.error + .img-with-fallback::after {
+  opacity: 1;
+}
+
+/* Media query for high-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-res-img {
+    display: block;
+  }
+  
+  .low-res-img {
+    display: none;
+  }
+}
+
+/* Responsive image loading with blur-up technique */
+.blur-up {
+  filter: blur(5px);
+  transition: filter 0.3s ease-in-out;
+}
+
+.blur-up.loaded {
+  filter: blur(0);
+}
+
+/* Responsive image with focal point */
+.img-focal-point {
+  object-position: var(--focal-x, center) var(--focal-y, center);
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

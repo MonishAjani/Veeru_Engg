@@ -4,6 +4,7 @@
 
 /* Import responsive enhancements */
 @import './responsive-enhancements.css';
+@import './responsive-images.css';
 
 :root {
   --background: #ffffff;

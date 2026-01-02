@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .test_views import test_cors
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('api/projects/', include('projects.urls')),
     path('api/certificates/', include('certificates.urls')),
     path('api/', include('prestigious_projects.urls')),
+    path('api/test-cors/', test_cors, name='test-cors'),
 ]
 
 # Serve media files in development
