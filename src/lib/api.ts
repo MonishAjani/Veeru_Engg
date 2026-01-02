@@ -202,17 +202,17 @@ export async function getProjects(): Promise<Project[]> {
     return [
       {
         id: 10,
-        name: "S.S Fabricators & Manufacturers Pvt. Ltd.(Engineers & contractors)",
-        details: "",
+        name: "S.S Fabricators & Manufacturers Pvt. Ltd.",
+        details: "(Engineers & contractors)",
         quantity: "10000 MT",
         location: "Wardha",
         work: "Manufacturing of M.S. Pipes at SB-04 PDN Project, Lower Wardha Radial Gate Fabrication & Erection.",
-        main_image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        main_image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         images: [
           {
             id: 1,
             image: "Thumbnail.jpg",
-            image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+            image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
             caption: "S.S Fabricators & Manufacturers Pvt. Ltd. Project",
             order: 1
           }
@@ -227,33 +227,33 @@ export async function getProjects(): Promise<Project[]> {
         quantity: "11000 MT",
         location: "Koradi- (M.H)",
         work: "3X660 MW TPS Expansion Project (units 8, 9 & 10), CW, ACW Pipe, Fabrication & Erection.",
-        main_image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        main_image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         images: [
           {
             id: 1,
             image: "Thumbnail.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
             caption: "MAHAGENCO Project",
             order: 1
           },
           {
             id: 2,
             image: "1.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/1.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/1.png",
             caption: "MAHAGENCO Project",
             order: 2
           },
           {
             id: 3,
             image: "3.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/3.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/3.png",
             caption: "MAHAGENCO Project",
             order: 3
           },
           {
             id: 4,
             image: "4.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/4.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/4.png",
             caption: "MAHAGENCO Project",
             order: 4
           }
@@ -1190,7 +1190,7 @@ export async function getLiveProjects(): Promise<LiveProject[]> {
         details: "(Engineers & contractors)",
         quantity: "10000 MT",
         location: "Wardha",
-        image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         status: "In Progress",
         category: "Manufacturing",
         year: "2025",
@@ -1203,7 +1203,7 @@ export async function getLiveProjects(): Promise<LiveProject[]> {
         details: "",
         quantity: "11000 MT",
         location: "Koradi- (M.H)",
-        image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         status: "In Progress",
         category: "Power Plant",
         year: "2025",
@@ -1349,7 +1349,7 @@ export async function getCompletedProjects(): Promise<CompletedProject[]> {
         quantity: "10000 MT",
         client: "S.S Fabricators & Manufacturers Pvt. Ltd.",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       },
@@ -1360,7 +1360,7 @@ export async function getCompletedProjects(): Promise<CompletedProject[]> {
         quantity: "11000 MT",
         client: "MAHAGENCO",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       },
@@ -1471,12 +1471,12 @@ export async function getProject(id: number): Promise<Project | null> {
         quantity: "10000 MT",
         location: "Wardha",
         work: "Manufacturing of M.S. Pipes at SB-04 PDN Project, Lower Wardha Radial Gate Fabrication & Erection.",
-        main_image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        main_image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         images: [
           {
             id: 1,
             image: "Thumbnail.jpg",
-            image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+            image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
             caption: "S.S Fabricators & Manufacturers Pvt. Ltd. Project",
             order: 1
           }
@@ -1492,33 +1492,33 @@ export async function getProject(id: number): Promise<Project | null> {
         quantity: "11000 MT",
         location: "Koradi- (M.H)",
         work: "3X660 MW TPS Expansion Project (units 8, 9 & 10), CW, ACW Pipe, Fabrication & Erection.",
-        main_image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        main_image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         images: [
           {
             id: 1,
             image: "Thumbnail.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
             caption: "MAHAGENCO Project",
             order: 1
           },
           {
             id: 2,
             image: "1.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/1.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/1.png",
             caption: "MAHAGENCO Project",
             order: 2
           },
           {
             id: 3,
             image: "3.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/3.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/3.png",
             caption: "MAHAGENCO Project",
             order: 3
           },
           {
             id: 4,
             image: "4.png",
-            image_url: "/images/Projects/(-2) Mahagenco - Koradi/4.png",
+            image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/4.png",
             caption: "MAHAGENCO Project",
             order: 4
           }
@@ -2448,7 +2448,7 @@ export async function getLiveProject(id: number): Promise<LiveProject | null> {
         details: "(Engineers & contractors)",
         quantity: "10000 MT",
         location: "Wardha",
-        image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         status: "In Progress",
         category: "Manufacturing",
         year: "2025",
@@ -2462,7 +2462,7 @@ export async function getLiveProject(id: number): Promise<LiveProject | null> {
         details: "",
         quantity: "11000 MT",
         location: "Koradi- (M.H)",
-        image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         status: "In Progress",
         category: "Power Plant",
         year: "2025",
@@ -2601,7 +2601,7 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
         quantity: "10000 MT",
         client: "S.S Fabricators & Manufacturers Pvt. Ltd.",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(1)    SS FABRICATIONS/Thumbnail.jpg",
+        image_url: "/images/Projects/%281%29%20%20%20%20SS%20FABRICATIONS/Thumbnail.jpg",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -2613,7 +2613,7 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
         quantity: "11000 MT",
         client: "MAHAGENCO",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(-2) Mahagenco - Koradi/Thumbnail.png",
+        image_url: "/images/Projects/%28-2%29%20Mahagenco%20-%20Koradi/Thumbnail.png",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
