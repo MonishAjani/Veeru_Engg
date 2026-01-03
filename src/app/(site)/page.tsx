@@ -60,7 +60,7 @@ export default function HomePage() {
         quantity: "17000 MT",
         location: "NANDAWADAGI DRIP IRRIGATION SCHEME PACKAGE - 1 (BLOCK - A, 12000 HA) PROJECT",
         client: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED",
-        image_url: "/images/Prestigious Project/Vital/Thumbnail.jpg",
+        image_url: "/images/Prestigious%20Project/Vital/Thumbnail.jpg",
         order: 1,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -74,7 +74,7 @@ export default function HomePage() {
         quantity: "10000 MT",
         location: "Wardha",
         client: "S.S Fabricators & Manufacturers Pvt. Ltd.",
-        image_url: "/images/Prestigious Project/S.S Fabricators & Manufacturers Pvt. Ltd/Thumbnail.jpg",
+        image_url: "/images/Prestigious%20Project/S.S%20Fabricators%20%26%20Manufacturers%20Pvt.%20Ltd/Thumbnail.jpg",
         order: 2,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -88,7 +88,7 @@ export default function HomePage() {
         quantity: "11000 MT",
         location: "Raipur",
         client: "Adani Power Limited",
-        image_url: "/images/Prestigious Project/Adani power Raipur/Thumbnail (1).jpg",
+        image_url: "/images/Prestigious%20Project/Adani%20power%20Raipur/Thumbnail%20%281%29.jpg",
         order: 3,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -102,7 +102,7 @@ export default function HomePage() {
         quantity: "9500 MT",
         location: "Tamnar, Raigarh – C.G.",
         client: "Jindal Power Project",
-        image_url: "/images/Prestigious Project/Jindal Power/01 Thumbnail.jpg",
+        image_url: "/images/Prestigious%20Project/Jindal%20Power/01%20Thumbnail.jpg",
         order: 4,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -116,7 +116,7 @@ export default function HomePage() {
         quantity: "6400 MT",
         location: "Maldives",
         client: "AFCONS INFRASTRUCTURE LIMITED",
-        image_url: "/images/Prestigious Project/AFCONS INFRSTRUCTURE LTD Finalized/01 Thumbnail.jpg",
+        image_url: "/images/Prestigious%20Project/AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/01%20Thumbnail.jpg",
         order: 5,
         is_active: true,
         created_at: new Date().toISOString(),
@@ -223,7 +223,7 @@ export default function HomePage() {
                 {/* Top Right - Image Card - Styled to match reference */}
                 <div className="col-span-2 rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto" style={{ height: '420px', width: '320px' }}>
                   <ResponsiveImage
-                    src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO%20.jpg"
+                    src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO.jpg"
                     alt="Virendra Singh - Founder & CEO"
                     aspectRatio="2-3"
                     objectFit="cover"

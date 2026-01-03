@@ -21,6 +21,7 @@ A modern web application for an industrial fabrication and engineering company, 
 - Dynamic content management through Django admin
 - API integration between frontend and backend
 - Modern UI with dark theme
+- CORS proxy for local development
 
 ## Getting Started
 
@@ -67,11 +68,28 @@ python manage.py runserver
 npm run dev
 ```
 
+```bash
+# In another terminal, from the project root
+npm run dev
+```
+
+The application is configured to connect directly to the local Django backend running on port 8000. Make sure your Django backend is running before starting the frontend. For more information, see [CORS_HANDLING_GUIDE.md](./CORS_HANDLING_GUIDE.md).
+
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Deployment
 
 This project is configured for deployment on Vercel (frontend) and can be deployed to various platforms for the backend (Heroku, Railway, etc.).
+
+### CORS Configuration
+
+When deploying to production, make sure to configure CORS properly on the backend server. The backend should allow requests from your frontend domain. This is configured in:
+
+1. Django settings (`django_backend/django_backend/settings.py`)
+2. `.htaccess` file for Apache servers
+3. Environment variables (`CORS_ALLOWED_ORIGINS`)
+
+See [CORS_PROXY_SETUP.md](./CORS_PROXY_SETUP.md) for more details.
 
 ## License
 

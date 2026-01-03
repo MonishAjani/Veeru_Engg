@@ -1,21 +1,42 @@
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:8000/api'
+// Base API URL - always use the local backend for local development
+const API_BASE = 'http://localhost:8000/api'
 
 export async function apiFetch<T>(path: string, init?: RequestInit & { method?: HttpMethod }) {
   const url = `${API_BASE}${path}`
-  const res = await fetch(url, {
-    ...init,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(init?.headers || {}),
-    },
-    cache: 'no-store',
-  })
-  if (!res.ok) {
-    throw new Error(`API error ${res.status}`)
+  
+  // No need to check for production API since we're always using the local backend
+  console.log('Fetching from local backend:', url)
+  
+  try {
+    // For all other cases, make a direct API request
+    console.log('Fetching:', url)
+    
+    const res = await fetch(url, {
+      ...init,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(init?.headers || {}),
+      },
+      cache: 'no-store',
+      mode: 'cors',
+    })
+    
+    if (!res.ok) {
+      throw new Error(`API error ${res.status}`)
+    }
+    
+    return (await res.json()) as T
+  } catch (error) {
+    // Log all errors since we're always using the local backend
+    console.error('Fetch failed:', error)
+    throw error
+    
+    // For all other cases, log the error and propagate it
+    console.error('Fetch failed:', error)
+    throw error
   }
-  return (await res.json()) as T
 }
 
 // Service types
@@ -198,7 +219,7 @@ export async function getProjects(): Promise<Project[]> {
     return allResults;
   } catch (error) {
     console.error('Error fetching projects:', error);
-    // Return dummy project data when API fails
+    // Return mock project data
     return [
       {
         id: 10,
@@ -2001,35 +2022,35 @@ export async function getProject(id: number): Promise<Project | null> {
           {
             id: 15,
             image: "d4655dd7-02df-46ca-b477-30af004661a0.jpg",
-            image_url: "/images/Projects/(6)  VITAL ENVIRONMENT INDIA PRIVATE LIMITED/d4655dd7-02df-46ca-b477-30af004661a0.jpg",
+            image_url: "/images/Projects/%286%29%20%20VITAL%20ENVIRONMENT%20INDIA%20PRIVATE%20LIMITED/d4655dd7-02df-46ca-b477-30af004661a0.jpg",
             caption: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED Project",
             order: 15
           },
           {
             id: 16,
             image: "dd10300f-0b52-4641-8eeb-e993d33fe9f0.jpg",
-            image_url: "/images/Projects/(6)  VITAL ENVIRONMENT INDIA PRIVATE LIMITED/dd10300f-0b52-4641-8eeb-e993d33fe9f0.jpg",
+            image_url: "/images/Projects/%286%29%20%20VITAL%20ENVIRONMENT%20INDIA%20PRIVATE%20LIMITED/dd10300f-0b52-4641-8eeb-e993d33fe9f0.jpg",
             caption: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED Project",
             order: 16
           },
           {
             id: 17,
             image: "e7f34280-a4f6-4eab-96e2-32b44b1c237f.jpg",
-            image_url: "/images/Projects/(6)  VITAL ENVIRONMENT INDIA PRIVATE LIMITED/e7f34280-a4f6-4eab-96e2-32b44b1c237f.jpg",
+            image_url: "/images/Projects/%286%29%20%20VITAL%20ENVIRONMENT%20INDIA%20PRIVATE%20LIMITED/e7f34280-a4f6-4eab-96e2-32b44b1c237f.jpg",
             caption: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED Project",
             order: 17
           },
           {
             id: 18,
             image: "ef4f41bb-6c94-4250-8b38-3842e41f7f47.jpg",
-            image_url: "/images/Projects/(6)  VITAL ENVIRONMENT INDIA PRIVATE LIMITED/ef4f41bb-6c94-4250-8b38-3842e41f7f47.jpg",
+            image_url: "/images/Projects/%286%29%20%20VITAL%20ENVIRONMENT%20INDIA%20PRIVATE%20LIMITED/ef4f41bb-6c94-4250-8b38-3842e41f7f47.jpg",
             caption: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED Project",
             order: 18
           },
           {
             id: 19,
             image: "fb2ef9ab-a78d-45c2-ba8e-48b86d48af1e.jpg",
-            image_url: "/images/Projects/(6)  VITAL ENVIRONMENT INDIA PRIVATE LIMITED/fb2ef9ab-a78d-45c2-ba8e-48b86d48af1e.jpg",
+            image_url: "/images/Projects/%286%29%20%20VITAL%20ENVIRONMENT%20INDIA%20PRIVATE%20LIMITED/fb2ef9ab-a78d-45c2-ba8e-48b86d48af1e.jpg",
             caption: "VITAL ENVIRONMENT INDIA PRIVATE LIMITED Project",
             order: 19
           }
@@ -2045,145 +2066,145 @@ export async function getProject(id: number): Promise<Project | null> {
         quantity: "6400 MT",
         location: "Maldives",
         work: "AFC | 5752 | SC - Pile Liner And TAB Superstructure Fabrication",
-        main_image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/01 Thumbnail.jpg",
+        main_image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/01%20Thumbnail.jpg",
         images: [
           {
             id: 1,
             image: "01 Thumbnail.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/01 Thumbnail.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/01%20Thumbnail.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 1
           },
           {
             id: 2,
             image: "IMG_20220911_122358.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220911_122358.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220911_122358.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 2
           },
           {
             id: 3,
             image: "IMG_20220912_172011.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220912_172011.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220912_172011.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 3
           },
           {
             id: 4,
             image: "IMG_20220912_172029.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220912_172029.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220912_172029.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 4
           },
           {
             id: 5,
             image: "IMG_20220912_172035.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220912_172035.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220912_172035.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 5
           },
           {
             id: 6,
             image: "IMG_20220913_171208.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220913_171208.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220913_171208.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 6
           },
           {
             id: 7,
             image: "IMG_20220914_182326.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220914_182326.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220914_182326.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 7
           },
           {
             id: 8,
             image: "IMG_20220915_083812.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220915_083812.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220915_083812.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 8
           },
           {
             id: 9,
             image: "IMG_20220915_153518.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220915_153518.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220915_153518.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 9
           },
           {
             id: 10,
             image: "IMG_20220920_162804.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220920_162804.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220920_162804.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 10
           },
           {
             id: 11,
             image: "IMG_20220922_081719.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220922_081719.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220922_081719.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 11
           },
           {
             id: 12,
             image: "IMG_20220925_155318.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220925_155318.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220925_155318.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 12
           },
           {
             id: 13,
             image: "IMG_20220925_163410.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220925_163410.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220925_163410.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 13
           },
           {
             id: 14,
             image: "IMG_20220927_081410.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20220927_081410.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20220927_081410.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 14
           },
           {
             id: 15,
             image: "IMG_20221002_165930.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221002_165930.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221002_165930.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 15
           },
           {
             id: 16,
             image: "IMG_20221004_190421.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221004_190421.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221004_190421.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 16
           },
           {
             id: 17,
             image: "IMG_20221006_165254.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221006_165254.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221006_165254.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 17
           },
           {
             id: 18,
             image: "IMG_20221007_075150.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221007_075150.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221007_075150.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 18
           },
           {
             id: 19,
             image: "IMG_20221009_084156.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221009_084156.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221009_084156.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 19
           },
           {
             id: 20,
             image: "IMG_20221011_082852.jpg",
-            image_url: "/images/Projects/(7)  AFCONS INFRSTRUCTURE LTD Finalized/IMG_20221011_082852.jpg",
+            image_url: "/images/Projects/%287%29%20%20AFCONS%20INFRSTRUCTURE%20LTD%20Finalized/IMG_20221011_082852.jpg",
             caption: "AFCONS INFRASTRUCTURE LIMITED Project",
             order: 20
           }
@@ -2199,152 +2220,152 @@ export async function getProject(id: number): Promise<Project | null> {
         quantity: "11000 MT",
         location: "Raipur",
         work: "CW, ACW and RW Piping along with fittings, valves and accessories for 2x800 MW (Phase-II) Ultra Super Critical Thermal Power Project, Fabrication, Erection & Painting",
-        main_image_url: "/images/Projects/(8) Adani Power Raipur/Thumbnail.jpg",
+        main_image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/Thumbnail.jpg",
         images: [
           {
             id: 1,
             image: "003.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/003.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/003.jpg",
             caption: "Adani Power Raipur Project",
             order: 1
           },
           {
             id: 2,
             image: "asdasfasdfv_.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/asdasfasdfv_.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/asdasfasdfv_.jpg",
             caption: "Adani Power Raipur Project",
             order: 2
           },
           {
             id: 3,
             image: "gbxdcfh.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/gbxdcfh.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/gbxdcfh.jpg",
             caption: "Adani Power Raipur Project",
             order: 3
           },
           {
             id: 4,
             image: "last.png",
-            image_url: "/images/Projects/(8) Adani Power Raipur/last.png",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/last.png",
             caption: "Adani Power Raipur Project",
             order: 4
           },
           {
             id: 5,
             image: "Thumbnail.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/Thumbnail.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/Thumbnail.jpg",
             caption: "Adani Power Raipur Project",
             order: 5
           },
           {
             id: 6,
             image: "WhatsApp Image 2025-10-21 at 04.09.50_4d44d77a.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.50_4d44d77a.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.50_4d44d77a.jpg",
             caption: "Adani Power Raipur Project",
             order: 6
           },
           {
             id: 7,
             image: "WhatsApp Image 2025-10-21 at 04.09.50_12857087.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.50_12857087.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.50_12857087.jpg",
             caption: "Adani Power Raipur Project",
             order: 7
           },
           {
             id: 8,
             image: "WhatsApp Image 2025-10-21 at 04.09.50_b7734269.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.50_b7734269.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.50_b7734269.jpg",
             caption: "Adani Power Raipur Project",
             order: 8
           },
           {
             id: 9,
             image: "WhatsApp Image 2025-10-21 at 04.09.51_7df47f0c.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.51_7df47f0c.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.51_7df47f0c.jpg",
             caption: "Adani Power Raipur Project",
             order: 9
           },
           {
             id: 10,
             image: "WhatsApp Image 2025-10-21 at 04.09.51_8fcfd91b.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.51_8fcfd91b.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.51_8fcfd91b.jpg",
             caption: "Adani Power Raipur Project",
             order: 10
           },
           {
             id: 11,
             image: "WhatsApp Image 2025-10-21 at 04.09.51_da2a2b14.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-21 at 04.09.51_da2a2b14.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-21%20at%2004.09.51_da2a2b14.jpg",
             caption: "Adani Power Raipur Project",
             order: 11
           },
           {
             id: 12,
             image: "WhatsApp Image 2025-10-29 at 22.20.17_cf8af055.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.17_cf8af055.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.17_cf8af055.jpg",
             caption: "Adani Power Raipur Project",
             order: 12
           },
           {
             id: 13,
             image: "WhatsApp Image 2025-10-29 at 22.20.19_0d1849fb.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.19_0d1849fb.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.19_0d1849fb.jpg",
             caption: "Adani Power Raipur Project",
             order: 13
           },
           {
             id: 14,
             image: "WhatsApp Image 2025-10-29 at 22.20.19_65d44760.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.19_65d44760.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.19_65d44760.jpg",
             caption: "Adani Power Raipur Project",
             order: 14
           },
           {
             id: 15,
             image: "WhatsApp Image 2025-10-29 at 22.20.20_6bffe6bb.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.20_6bffe6bb.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.20_6bffe6bb.jpg",
             caption: "Adani Power Raipur Project",
             order: 15
           },
           {
             id: 16,
             image: "WhatsApp Image 2025-10-29 at 22.20.20_6696fd13.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.20_6696fd13.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.20_6696fd13.jpg",
             caption: "Adani Power Raipur Project",
             order: 16
           },
           {
             id: 17,
             image: "WhatsApp Image 2025-10-29 at 22.20.21_304c3075.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.21_304c3075.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.21_304c3075.jpg",
             caption: "Adani Power Raipur Project",
             order: 17
           },
           {
             id: 18,
             image: "WhatsApp Image 2025-10-29 at 22.20.22_c8c195e0.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.22_c8c195e0.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.22_c8c195e0.jpg",
             caption: "Adani Power Raipur Project",
             order: 18
           },
           {
             id: 19,
             image: "WhatsApp Image 2025-10-29 at 22.20.23_df039d3c.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.23_df039d3c.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.23_df039d3c.jpg",
             caption: "Adani Power Raipur Project",
             order: 19
           },
           {
             id: 20,
             image: "WhatsApp Image 2025-10-29 at 22.20.23_ecb9dfee.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.23_ecb9dfee.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.23_ecb9dfee.jpg",
             caption: "Adani Power Raipur Project",
             order: 20
           },
           {
             id: 21,
             image: "WhatsApp Image 2025-10-29 at 22.20.24_5c2a9c34.jpg",
-            image_url: "/images/Projects/(8) Adani Power Raipur/WhatsApp Image 2025-10-29 at 22.20.24_5c2a9c34.jpg",
+            image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/WhatsApp%20Image%202025-10-29%20at%2022.20.24_5c2a9c34.jpg",
             caption: "Adani Power Raipur Project",
             order: 21
           }
@@ -2360,7 +2381,7 @@ export async function getProject(id: number): Promise<Project | null> {
         quantity: "6000 MT",
         location: "Mirzapur, Uttar Pradesh",
         work: "CW, ACW, RW System of 2x800 MW Power Plant, Fabrication, Erection & Painting.",
-        main_image_url: "/images/Projects/(9). Adani Power Mirzapur/Thumbnail.jpg",
+        main_image_url: "/images/Projects/%289%29.%20Adani%20Power%20Mirzapur/Thumbnail.jpg",
         images: [
           {
             id: 1,
@@ -2697,7 +2718,7 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
         quantity: "11000 MT",
         client: "Adani Power Limited",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(8) Adani Power Raipur/Thumbnail.jpg",
+        image_url: "/images/Projects/%288%29%20Adani%20Power%20Raipur/Thumbnail.jpg",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -2709,7 +2730,7 @@ export async function getCompletedProject(id: number): Promise<CompletedProject 
         quantity: "6000 MT",
         client: "Adani Power Limited",
         completion_date: "2025-12-31",
-        image_url: "/images/Projects/(9). Adani Power Mirzapur/Thumbnail.jpg",
+        image_url: "/images/Projects/%289%29.%20Adani%20Power%20Mirzapur/Thumbnail.jpg",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -2740,7 +2761,52 @@ export async function getPrestigiousProjects(): Promise<PrestigiousProject[]> {
     return allResults;
   } catch (error) {
     console.error('Error fetching prestigious projects:', error);
-    return []; // Return empty array on error
+    
+    // Return mock data as fallback
+    return [
+      {
+        id: 1,
+        name: "Jindal Power Project",
+        details: "CW and ACW Pipe, Fabrication, Erection, Commissioning & Painting.",
+        work_details: "Completed the fabrication and installation of cooling water systems for this major power plant.",
+        quantity: "9500 MT",
+        location: "Tamnar, Raigarh – C.G.",
+        client: "Jindal Power Ltd.",
+        image_url: "/images/Projects/(2)  Jindal Power/01 Thumbnail.jpg",
+        order: 1,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 2,
+        name: "NTPC Meja Project",
+        details: "CW System and make-up water system civil works package Stage 1 (2x660 MW).",
+        work_details: "Fabrication, Erection & Painting of cooling water systems for this major NTPC power plant.",
+        quantity: "5400 MT",
+        location: "MEJA ALLAHABAD",
+        client: "NTPC Limited",
+        image_url: "/images/Projects/(3)  NTPC Mejja allahbad/Thumbnail.jpg",
+        order: 2,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      },
+      {
+        id: 3,
+        name: "Adani Power Godda Project",
+        details: "2 X 800 MW Ultra Supercritical Coal-based Thermal Power Project",
+        work_details: "Intake Pipeline, Raw Water Pipeline 1350 Dia, Fabrication, Erection & Painting.",
+        quantity: "18 KM",
+        location: "Village Motia, Dist. Godda J.H.",
+        client: "ADANI INFRA. (INDIA) LIMITED",
+        image_url: "/images/Projects/(5)  Adani Infra godda/Thumbnail.jpg",
+        order: 3,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+    ];
   }
 }
 
@@ -2750,6 +2816,55 @@ export async function getPrestigiousProject(id: number): Promise<PrestigiousProj
     return await apiFetch<PrestigiousProject>(`/prestigious-projects/${id}/`);
   } catch (error) {
     console.error(`Error fetching prestigious project ${id}:`, error);
+    
+    // Return mock data as fallback based on ID
+    if (id === 1) {
+      return {
+        id: 1,
+        name: "Jindal Power Project",
+        details: "CW and ACW Pipe, Fabrication, Erection, Commissioning & Painting.",
+        work_details: "Completed the fabrication and installation of cooling water systems for this major power plant.",
+        quantity: "9500 MT",
+        location: "Tamnar, Raigarh – C.G.",
+        client: "Jindal Power Ltd.",
+        image_url: "/images/Projects/(2)  Jindal Power/01 Thumbnail.jpg",
+        order: 1,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+    } else if (id === 2) {
+      return {
+        id: 2,
+        name: "NTPC Meja Project",
+        details: "CW System and make-up water system civil works package Stage 1 (2x660 MW).",
+        work_details: "Fabrication, Erection & Painting of cooling water systems for this major NTPC power plant.",
+        quantity: "5400 MT",
+        location: "MEJA ALLAHABAD",
+        client: "NTPC Limited",
+        image_url: "/images/Projects/(3)  NTPC Mejja allahbad/Thumbnail.jpg",
+        order: 2,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+    } else if (id === 3) {
+      return {
+        id: 3,
+        name: "Adani Power Godda Project",
+        details: "2 X 800 MW Ultra Supercritical Coal-based Thermal Power Project",
+        work_details: "Intake Pipeline, Raw Water Pipeline 1350 Dia, Fabrication, Erection & Painting.",
+        quantity: "18 KM",
+        location: "Village Motia, Dist. Godda J.H.",
+        client: "ADANI INFRA. (INDIA) LIMITED",
+        image_url: "/images/Projects/(5)  Adani Infra godda/Thumbnail.jpg",
+        order: 3,
+        is_active: true,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+    }
+    
     return null;
   }
 }
