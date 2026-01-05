@@ -2,7 +2,7 @@ services:
   - type: web
     name: veeru-engineering-api
     env: python
-    region: india  # Choose a region close to your users
+    region: singapore  # Choose a region close to your users
     rootDir: django_backend  # Specify the subdirectory where the Django project is located
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     startCommand: gunicorn django_backend.wsgi:application
