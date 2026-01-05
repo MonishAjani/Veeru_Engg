@@ -50,21 +50,20 @@ While Render will set up most environment variables from the `render.yaml` file,
    - `ALLOWED_HOSTS` (include your Render domain and frontend domain)
    - `CORS_ALLOWED_ORIGINS` (set to your frontend domain)
 
-## Step 5: Set Up Media Storage (Optional but Recommended)
+## Step 5: Set Up Cloudinary Media Storage (Optional but Recommended)
 
-Since Render doesn't persist files between deployments, you should set up S3 or similar for media files:
+Since Render doesn't persist files between deployments, you should set up Cloudinary for media files:
 
-1. Create an AWS S3 bucket for your media files
-2. Create an IAM user with access to this bucket
+1. Create a Cloudinary account at [cloudinary.com](https://cloudinary.com) if you don't have one
+2. Get your Cloudinary credentials from your dashboard
 3. Add the following environment variables to your Render web service:
-   - `AWS_ACCESS_KEY_ID`
-   - `AWS_SECRET_ACCESS_KEY`
-   - `AWS_STORAGE_BUCKET_NAME`
-   - `AWS_S3_REGION_NAME` (optional, defaults to us-east-1)
+   - `CLOUDINARY_CLOUD_NAME`
+   - `CLOUDINARY_API_KEY`
+   - `CLOUDINARY_API_SECRET`
 4. SSH into your Render instance or use the web shell
 5. Run the setup script:
    ```bash
-   python setup_media_storage.py
+   python setup_cloudinary_storage.py
    ```
 
 ## Step 6: Verify Your Deployment
@@ -132,9 +131,10 @@ If you have database connection problems:
 
 If media files aren't working:
 
-1. Verify S3 configuration
-2. Check permissions on your S3 bucket
-3. Ensure the IAM user has correct permissions
+1. Verify Cloudinary configuration
+2. Check your Cloudinary account dashboard for any issues
+3. Ensure the Cloudinary credentials are correctly set in your environment variables
+4. Check the Cloudinary console for any upload errors
 
 ## Maintenance Tasks
 

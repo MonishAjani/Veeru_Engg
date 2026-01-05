@@ -24,6 +24,13 @@ services:
         value: /static/
       - key: MEDIA_URL
         value: /media/
+      # Cloudinary environment variables
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false  # This will prompt you to enter the value during deployment
+      - key: CLOUDINARY_API_KEY
+        sync: false  # This will prompt you to enter the value during deployment
+      - key: CLOUDINARY_API_SECRET
+        sync: false  # This will prompt you to enter the value during deployment
 
 databases:
   - name: veeru-engineering-db

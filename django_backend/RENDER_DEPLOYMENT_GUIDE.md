@@ -115,11 +115,23 @@ If you encounter CORS issues:
 2. Ensure it includes your frontend domain
 3. Verify that `django-cors-headers` is properly configured
 
+### Media Files Not Loading
+
+If media files aren't loading:
+
+1. Verify Cloudinary configuration in your Django settings
+2. Check that the Cloudinary environment variables are correctly set
+3. Ensure your Cloudinary account is active and has sufficient credits
+4. Check the Cloudinary console for any upload errors or restrictions
+5. Verify that `django-cloudinary-storage` is properly configured
+
 ## Additional Resources
 
 - [Render Documentation](https://render.com/docs)
 - [Django Deployment Checklist](https://docs.djangoproject.com/en/stable/howto/deployment/checklist/)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Cloudinary Documentation](https://cloudinary.com/documentation)
+- [Django Cloudinary Storage](https://github.com/klis87/django-cloudinary-storage)
 
 ## Support
 
