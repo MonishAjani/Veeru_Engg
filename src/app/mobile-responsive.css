@@ -1,0 +1,285 @@
+/* Mobile Responsive Enhancements */
+
+/* Import this file in globals.css */
+
+/* General mobile improvements */
+@media (max-width: 640px) {
+  /* Improve spacing for mobile */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Adjust section padding */
+  section, .section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Improve card padding */
+  .card, .bg-gradient-card {
+    padding: 1.25rem !important;
+  }
+  
+  /* Ensure buttons are more touch-friendly */
+  .btn-primary, .btn-outline, button, a.btn-primary, a.btn-outline {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+  
+  /* Improve text readability */
+  p, .text-steel-200, .text-steel-300 {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Adjust headings */
+  h1, .h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2, .h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h3, .h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Improve spacing between elements */
+  .mb-12 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .mb-8 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-6 {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Adjust grid gaps */
+  .gap-8 {
+    gap: 1rem !important;
+  }
+  
+  .gap-6 {
+    gap: 0.75rem !important;
+  }
+  
+  .gap-4 {
+    gap: 0.5rem !important;
+  }
+}
+
+/* Service detail page specific improvements */
+@media (max-width: 640px) {
+  /* Adjust icon positioning */
+  .absolute.-left-4 {
+    left: -0.5rem !important;
+  }
+  
+  /* Adjust padding for icon sections */
+  .pl-10 {
+    padding-left: 2.5rem !important;
+  }
+  
+  /* Make feature cards full width */
+  .grid-cols-1.md\:grid-cols-2 > div,
+  .grid-cols-1.md\:grid-cols-3 > div {
+    grid-column: span 1 !important;
+  }
+  
+  /* Improve project showcase cards */
+  .relative.h-48 {
+    height: 180px !important;
+  }
+  
+  /* Adjust contact section */
+  .flex.items-center.p-3 {
+    padding: 0.75rem !important;
+  }
+  
+  .w-10.h-10 {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  
+  /* Adjust related services section */
+  .text-center.mb-12 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .grid-cols-1.md\:grid-cols-3.gap-6 > div {
+    margin-bottom: 1rem !important;
+  }
+  
+  .grid-cols-1.md\:grid-cols-3.gap-6 > div:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Navigation improvements */
+@media (max-width: 640px) {
+  /* Make mobile menu more touch-friendly */
+  .md\:hidden .text-gray-700 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  /* Improve logo sizing */
+  .h-8 {
+    height: 2rem !important;
+  }
+  
+  /* Adjust mobile menu button */
+  .md\:hidden.rounded-md.p-3 {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Hero section improvements */
+@media (max-width: 640px) {
+  /* Adjust hero section padding */
+  .py-16 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Improve hero text alignment */
+  .text-responsive {
+    text-align: center !important;
+  }
+}
+
+/* Image improvements */
+@media (max-width: 640px) {
+  /* Make images responsive */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Adjust image containers */
+  .aspect-ratio-container {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Form improvements */
+@media (max-width: 640px) {
+  /* Make form elements more touch-friendly */
+  input, select, textarea, button {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    min-height: 44px !important;
+  }
+  
+  /* Adjust form spacing */
+  .space-y-4 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+  /* Further adjustments for very small screens */
+  .container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Smaller text for very small screens */
+  p, .text-steel-200, .text-steel-300 {
+    font-size: 0.875rem !important;
+  }
+  
+  /* Adjust headings for very small screens */
+  h1, .h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2, .h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  h3, .h3 {
+    font-size: 1.125rem !important;
+  }
+  
+  /* Reduce padding for cards */
+  .card, .bg-gradient-card {
+    padding: 1rem !important;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Adjust grid layouts for tablets */
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  /* Improve spacing for tablets */
+  .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  /* Adjust section padding for tablets */
+  section, .section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* Landscape mobile improvements */
+@media (max-width: 896px) and (orientation: landscape) {
+  /* Adjust heights for landscape mode */
+  .h-48 {
+    height: 120px !important;
+  }
+  
+  /* Reduce vertical spacing */
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .mb-12 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Adjust grid layouts for landscape */
+  .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Touch device improvements */
+@media (hover: none) {
+  /* Enhance touch targets */
+  a, button, .btn-primary, .btn-outline {
+    padding: 0.75rem !important;
+  }
+  
+  /* Improve hover states for touch */
+  .hover\:scale-\[1\.02\]:hover {
+    transform: scale(1) !important;
+  }
+  
+  /* Add active states for touch */
+  .hover\:scale-\[1\.02\]:active {
+    transform: scale(1.02) !important;
+  }
+}

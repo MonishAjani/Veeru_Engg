@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: veeru-engineering-api
+    env: python
+    region: singapore  # Choose a region close to your users
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn django_backend.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: veeru-engineering-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: .onrender.com,veeruengineering.com,www.veeruengineering.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://veeruengineering.com,https://www.veeruengineering.com
+      - key: STATIC_URL
+        value: /static/
+      - key: MEDIA_URL
+        value: /media/
+
+databases:
+  - name: veeru-engineering-db
+    databaseName: veeru_engineering
+    user: veeru_engineering
+    plan: free  # Upgrade to a paid plan for production

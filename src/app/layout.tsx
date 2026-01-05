@@ -16,7 +16,8 @@ export const viewport: Viewport = {
   maximumScale: 5.0, // Allow zooming for accessibility
   userScalable: true, // Allow users to zoom
   minimumScale: 1.0,
-  themeColor: '#f97316', // Orange-500 color for browser UI
+  themeColor: '#f97316', // Orange-500 color for browser UI,
+  viewportFit: 'cover' // Ensures content fits the viewport on notched phones
 }
 
 export default function RootLayout({
