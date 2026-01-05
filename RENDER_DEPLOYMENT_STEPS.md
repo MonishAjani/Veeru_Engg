@@ -4,7 +4,7 @@ This guide provides detailed instructions for deploying your Django backend to R
 
 ## Files Created/Modified for Render Deployment
 
-1. **render.yaml** - Infrastructure as code for Render
+1. **render.yaml** - Infrastructure as code for Render (located in the repository root)
 2. **requirements.txt** - Updated with PostgreSQL support
 3. **setup_media_storage.py** - Script for configuring S3 media storage
 4. **api-render-config.ts** - Example API client configuration for the frontend

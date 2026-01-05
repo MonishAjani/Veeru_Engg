@@ -15,7 +15,7 @@ Your project has already been prepared with the necessary files:
 - `requirements.txt` - Lists all Python dependencies
 - `runtime.txt` - Specifies the Python version
 - `Procfile` - Defines the command to run your application
-- `render.yaml` - Infrastructure as code for Render
+- `render.yaml` - Infrastructure as code for Render (located in the repository root)
 
 ## Step 2: Create a Render Account
 
