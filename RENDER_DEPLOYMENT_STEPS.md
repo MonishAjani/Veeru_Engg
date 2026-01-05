@@ -35,8 +35,13 @@ git push
 6. Review the configuration and click "Apply Blueprint"
 
 Render will automatically create:
-- A PostgreSQL database
-- A web service for your Django application
+- A PostgreSQL database (free plan)
+- A web service for your Django application (free plan)
+
+Note: The free plan has some limitations, including:
+- The web service will spin down after 15 minutes of inactivity
+- The first request after inactivity will be slower (cold start)
+- Limited resources and bandwidth
 
 ## Step 4: Configure Environment Variables
 
@@ -106,10 +111,11 @@ If you want to use a custom domain for your API:
 
 ### Cold Starts on Free Tier
 
-Render's free tier spins down after inactivity, causing slow initial requests:
+Render's free tier spins down after 15 minutes of inactivity, causing slow initial requests:
 
-- Solution: Upgrade to a paid plan for production
-- Workaround: Set up a cron job to ping your API regularly
+- Solution: You can continue using the free tier, just be aware of the cold start delay
+- Workaround: Set up a cron job to ping your API every 14 minutes to keep it active
+- Alternative: Use a service like UptimeRobot (free) to ping your API regularly
 
 ### CORS Issues
 
