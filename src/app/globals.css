@@ -6,6 +6,8 @@
 @import './responsive-enhancements.css';
 @import './responsive-images.css';
 @import './mobile-responsive.css'; /* New mobile-specific enhancements */
+@import './advanced-responsive.css'; /* Advanced responsive enhancements for all devices */
+@import './alignment-fixes.css'; /* Fixes for alignment issues on mobile devices */
 
 :root {
   --background: #ffffff;

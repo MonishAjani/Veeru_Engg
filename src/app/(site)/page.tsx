@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getPrestigiousProjects, PrestigiousProject } from '../../lib/api';
 import Link from 'next/link';
 import CountUp from '../../components/CountUp';
-import ResponsiveImage, { ResponsivePicture } from '../../components/ResponsiveImage';
+import Image from 'next/image';
 
 export default function HomePage() {
   const [prestigiousProjects, setPrestigiousProjects] = useState<PrestigiousProject[]>([]);
@@ -200,11 +200,12 @@ export default function HomePage() {
               <div className="grid grid-cols-2 h-full" style={{ gap: '10px', marginTop: '-35px' }}>
                 {/* Top Left - Construction Cranes Image (Square) */}
                 <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '200px', width: '224px' }}>
-                  <ResponsiveImage
+                  <Image
                     src="/images/01 (1).jpg"
                     alt="Construction Cranes"
-                    aspectRatio="1-1"
-                    objectFit="cover"
+                    width={224}
+                    height={200}
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                   />
                 </div>
                 {/* Bottom Left - Orange Card with Expert Team (Rectangle) */}
@@ -222,24 +223,25 @@ export default function HomePage() {
               <div className="grid grid-cols-1 h-full flex flex-col items-center" style={{ gap: '10px' }}>
                 {/* Top Right - Image Card - Styled to match reference */}
                 <div className="col-span-2 rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto" style={{ height: '420px', width: '320px' }}>
-                  <ResponsiveImage
+                  <Image
                     src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO.jpg"
                     alt="Virendra Singh - Founder & CEO"
-                    aspectRatio="2-3"
-                    objectFit="cover"
+                    width={320}
+                    height={420}
                     priority={true}
-                    focalPoint={{ x: "center", y: "20%" }}
+                    style={{ objectFit: 'cover', width: '100%', height: '100%', objectPosition: 'center 20%' }}
                     sizes="(max-width: 768px) 100vw, 300px"
                   />
                 </div>
                 
                 {/* Bottom Right - Person in Protective Gear Image (Square) - Adjusted for spacing */}
                 <div className="col-span-2 rounded-2xl overflow-hidden mt-4" style={{ height: '160px', width: '300px' }}>
-                  <ResponsiveImage
+                  <Image
                     src="/images/02.jpg"
                     alt="Engineer in Protective Gear"
-                    aspectRatio="1-1"
-                    objectFit="cover"
+                    width={300}
+                    height={160}
+                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                   />
                 </div>
               </div>
@@ -263,11 +265,12 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <ResponsiveImage
+                <Image
                   src="/images/Structural%20Fabrication.png"
                   alt="Structural Fabrication"
-                  aspectRatio="16-9"
-                  objectFit="cover"
+                  width={400}
+                  height={225}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -293,11 +296,12 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <ResponsiveImage
+                <Image
                   src="/images/Industrial%20Piping.png"
                   alt="Industrial Piping"
-                  aspectRatio="16-9"
-                  objectFit="cover"
+                  width={400}
+                  height={225}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -323,12 +327,16 @@ export default function HomePage() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
               <div className="relative h-56">
-                <ResponsiveImage
+                <Image
                   src="/images/Heavy%20Equipments.png"
                   alt="Heavy Equipment"
-                  aspectRatio="16-9"
-                  objectFit="cover"
-                  fallbackSrc="/images/02.jpg"
+                  width={400}
+                  height={225}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/images/02.jpg";
+                  }}
                 />
                 {/* Circular Icon */}
                 <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
@@ -463,13 +471,17 @@ export default function HomePage() {
                       <div className="flex">
                         {/* Image on Left */}
                         <div className="w-1/2 bg-gray-200">
-                          <ResponsiveImage
+                          <Image
                             src={prestigiousProjects[currentSlide].image_url}
                             alt={prestigiousProjects[currentSlide].name}
-                            aspectRatio="4-3"
-                            objectFit="cover"
+                            width={600}
+                            height={450}
+                            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                             priority={true}
-                            fallbackSrc="/images/placeholder.jpg"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "/images/placeholder.jpg";
+                            }}
                           />
                         </div>
 

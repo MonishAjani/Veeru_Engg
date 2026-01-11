@@ -13,3 +13,10 @@ python-dotenv==1.0.1
 sqlparse==0.5.3
 tzdata==2025.2
 whitenoise==6.11.0
+
+# Production dependencies
+django-filter==24.1  # For advanced filtering in API
+django-storages==1.14.2  # For cloud storage backends
+sentry-sdk==1.40.4  # For error tracking
+django-redis==5.4.0  # For Redis cache backend
+uvicorn==0.27.1  # ASGI server for production

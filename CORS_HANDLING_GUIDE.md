@@ -1,59 +1,143 @@
 # CORS Handling Guide
 
-This guide explains how we handle Cross-Origin Resource Sharing (CORS) issues when developing locally.
+This guide explains how to handle Cross-Origin Resource Sharing (CORS) issues in your application, which is especially important for responsive applications that work across different devices and networks.
 
-## What is CORS?
+## Table of Contents
 
-CORS (Cross-Origin Resource Sharing) is a security feature implemented by browsers that restricts web pages from making requests to a different domain than the one that served the web page. This is a security measure to prevent malicious websites from making unauthorized requests to other websites on behalf of the user.
+1. [Understanding CORS](#understanding-cors)
+2. [CORS Configuration in Django Backend](#cors-configuration-in-django-backend)
+3. [CORS Configuration in Next.js Frontend](#cors-configuration-in-nextjs-frontend)
+4. [Testing CORS Configuration](#testing-cors-configuration)
+5. [Common CORS Issues and Solutions](#common-cors-issues-and-solutions)
+6. [CORS in Production vs Development](#cors-in-production-vs-development)
 
-## The Problem
+## Understanding CORS
 
-When developing locally (e.g., running your React application on `http://localhost:3000`), you may encounter CORS errors when trying to access APIs on different domains. This happens because the browser enforces the same-origin policy, and the API server needs to explicitly allow requests from your local development server.
+Cross-Origin Resource Sharing (CORS) is a security feature implemented by browsers that restricts web pages from making requests to a different domain than the one that served the original page. This is a critical security mechanism but can cause issues in applications with separate frontend and backend services.
 
-## Solution: Direct Connection to Local Backend
+### When CORS Issues Occur
 
-We've implemented a simple but effective solution to handle CORS issues during local development:
+CORS issues typically arise when:
 
-1. **Server-side CORS configuration** - The Django backend is configured to allow requests from your local development server
-2. **Direct connection to local backend** - The frontend always connects directly to the local backend at `http://localhost:8000/api`
+1. Your frontend and backend are served from different domains, subdomains, or ports
+2. Your API makes requests to third-party services
+3. You're testing locally with different development servers
+4. Your mobile responsive site is accessed from various networks and devices
 
-## How It Works
+### CORS Headers
 
-### 1. Server-side CORS Configuration
+The key CORS headers include:
 
-The Django backend has been configured with proper CORS headers:
+- `Access-Control-Allow-Origin`: Specifies which origins can access the resource
+- `Access-Control-Allow-Methods`: Specifies the allowed HTTP methods
+- `Access-Control-Allow-Headers`: Specifies which headers can be used
+- `Access-Control-Allow-Credentials`: Indicates whether credentials can be included
+- `Access-Control-Max-Age`: Specifies how long preflight results can be cached
+
+## CORS Configuration in Django Backend
+
+Our Django backend uses the `django-cors-headers` package to handle CORS. Here's how it's configured:
+
+### Installation
+
+The package should already be installed, but if needed:
+
+```bash
+pip install django-cors-headers
+```
+
+### Configuration in settings.py
+
+Ensure these settings are in your `django_backend/django_backend/settings.py`:
 
 ```python
+INSTALLED_APPS = [
+    # ...
+    'corsheaders',
+    # ...
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # This should be as high as possible
+    'django.middleware.common.CommonMiddleware',
+    # ...
+]
+
 # CORS settings
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
+CORS_ALLOW_ALL_ORIGINS = False  # Don't enable this in production
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js development server
+    "http://127.0.0.1:3000",
+    "https://veeruengineering.com",  # Production domain
+    # Add any other domains that need access
+]
+
+# Allow credentials (cookies, authorization headers)
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_METHODS = ['DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT']
+
+# Allow these headers in requests
 CORS_ALLOW_HEADERS = [
-    'accept', 'accept-encoding', 'authorization', 'content-type', 'dnt',
-    'origin', 'user-agent', 'x-csrftoken', 'x-requested-with',
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Allow these HTTP methods
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 ```
 
-This configuration allows your local frontend (running on `http://localhost:3000`) to make requests to your local backend (running on `http://localhost:8000`).
+## CORS Configuration in Next.js Frontend
 
-### 2. Direct Connection to Local Backend
+### Next.js API Configuration
 
-The API client is configured to always connect to the local backend:
+If you're using Next.js API routes, you can configure CORS for those routes:
+
+```javascript
+// Example Next.js API route with CORS headers
+export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust in production
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  // Handle OPTIONS request
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  // Your API logic here
+  res.status(200).json({ message: 'Hello from Next.js API' });
+}
+```
+
+### Fetch API Configuration
+
+In our frontend API client (`src/lib/api.ts`), we've configured fetch requests to handle CORS:
 
 ```typescript
-// Base API URL - always use the local backend for local development
-const API_BASE = 'http://localhost:8000/api'
-
 export async function apiFetch<T>(path: string, init?: RequestInit & { method?: HttpMethod }) {
-  const url = `${API_BASE}${path}`
-  
-  // No need to check for production API since we're always using the local backend
-  console.log('Fetching from local backend:', url)
+  const url = `${API_BASE}${path}`;
   
   try {
-    // For all other cases, make a direct API request
-    console.log('Fetching:', url)
-    
     const res = await fetch(url, {
       ...init,
       headers: {
@@ -61,69 +145,127 @@ export async function apiFetch<T>(path: string, init?: RequestInit & { method?: 
         ...(init?.headers || {}),
       },
       cache: 'no-store',
-      mode: 'cors',
-    })
+      mode: 'cors',  // Explicitly set CORS mode
+      credentials: 'include',  // Include credentials if needed
+    });
     
     if (!res.ok) {
-      throw new Error(`API error ${res.status}`)
+      throw new Error(`API error ${res.status}`);
     }
     
-    return (await res.json()) as T
+    return (await res.json()) as T;
   } catch (error) {
-    // Log all errors since we're always using the local backend
-    console.error('Fetch failed:', error)
-    throw error
+    console.error('Fetch failed:', error);
+    throw error;
   }
 }
 ```
 
-This ensures that your frontend always connects to your local backend, avoiding CORS issues.
+## Testing CORS Configuration
 
-## Running the Local Backend
+To test your CORS configuration:
 
-To use this solution, you need to run both your frontend and backend servers:
-
-1. **Start the Django backend**:
-   ```bash
-   cd django_backend
-   python manage.py runserver
+1. **Browser Console Test**:
+   ```javascript
+   fetch('http://localhost:8000/api/test-cors/', {
+     method: 'GET',
+     mode: 'cors',
+     credentials: 'include'
+   })
+   .then(response => response.json())
+   .then(data => console.log(data))
+   .catch(error => console.error('Error:', error));
    ```
 
-2. **Start the Next.js frontend**:
-   ```bash
-   npm run dev
-   ```
+2. **Using the Network Tab**:
+   - Open your browser's developer tools
+   - Go to the Network tab
+   - Make a request to your API
+   - Check for CORS-related errors in the response headers
 
-The frontend will automatically connect to the backend running on `http://localhost:8000/api`.
+3. **Testing with Different Origins**:
+   - Test from different ports, domains, and devices
+   - Verify that authorized origins work and unauthorized ones fail
 
-## Fallback Mock Data
+## Common CORS Issues and Solutions
 
-If you encounter errors when connecting to the backend, the API functions include fallback mock data:
+### 1. "No 'Access-Control-Allow-Origin' header is present"
+
+**Issue**: The server isn't sending the proper CORS headers.
+
+**Solution**:
+- Ensure `corsheaders.middleware.CorsMiddleware` is in your Django middleware
+- Verify the requesting origin is in `CORS_ALLOWED_ORIGINS`
+- Check that the middleware order is correct (CORS middleware should be first)
+
+### 2. Preflight Request Failing
+
+**Issue**: The OPTIONS request sent before the actual request is failing.
+
+**Solution**:
+- Ensure your server properly handles OPTIONS requests
+- Check that all required headers are in `CORS_ALLOW_HEADERS`
+- Verify the HTTP method is in `CORS_ALLOW_METHODS`
+
+### 3. Credentials Issues
+
+**Issue**: Requests with credentials (cookies, HTTP authentication) are failing.
+
+**Solution**:
+- Set `CORS_ALLOW_CREDENTIALS = True` in Django
+- Set `credentials: 'include'` in fetch requests
+- Ensure the `Access-Control-Allow-Origin` header doesn't use a wildcard (`*`) when using credentials
+
+### 4. Mobile-Specific CORS Issues
+
+**Issue**: CORS works on desktop but fails on mobile devices.
+
+**Solution**:
+- Check for any mobile-specific proxies or network settings
+- Ensure your SSL certificates are valid (mobile browsers can be stricter)
+- Test with mobile network and Wi-Fi to rule out network-specific issues
+
+## CORS in Production vs Development
+
+### Development Configuration
+
+In development, you might use more permissive CORS settings:
+
+```python
+# Development settings
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True  # Only in development!
+    CORS_ALLOW_CREDENTIALS = True
+```
+
+### Production Configuration
+
+In production, use stricter CORS settings:
+
+```python
+# Production settings
+if not DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [
+        "https://veeruengineering.com",
+        # Add other production domains
+    ]
+    CORS_ALLOW_CREDENTIALS = True
+```
+
+### Environment-Specific Frontend Configuration
+
+Adjust your frontend API calls based on the environment:
 
 ```typescript
-export async function getProjects(): Promise<Project[]> {
-  try {
-    console.log('Fetching projects from the Projects table');
-    // API request logic...
-    return allResults;
-  } catch (error) {
-    console.error('Error fetching projects:', error);
-    // Return mock project data
-    return [
-      // Mock data...
-    ];
-  }
-}
+// Base API URL - use different URLs for development and production
+const API_BASE = process.env.NODE_ENV === 'production'
+  ? 'https://api.veeruengineering.com/api'
+  : 'http://localhost:8000/api';
 ```
 
-This ensures that even if the backend is not available, the frontend can still display meaningful content.
+## Conclusion
 
-## Troubleshooting
+Proper CORS configuration is essential for your responsive application to work correctly across different devices and networks. By following this guide, you can ensure that your frontend and backend communicate properly while maintaining security.
 
-If you're still having issues:
-
-1. Make sure your Django backend is running on port 8000
-2. Check that the Django backend has the correct CORS configuration
-3. Check the browser console for specific error messages
-4. Make sure you've restarted both the frontend and backend after making changes
-5. Clear your browser cache if you're still seeing old behavior
+Remember that CORS is a security feature, not a bug. It's designed to protect users, so it's important to configure it correctly rather than trying to bypass it.

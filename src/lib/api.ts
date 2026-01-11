@@ -1,18 +1,18 @@
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
-// Base API URL - always use the local backend for local development
-const API_BASE = 'http://localhost:8000/api'
+// Base API URL - use environment variable in production, fallback to local in development
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
 
 export async function apiFetch<T>(path: string, init?: RequestInit & { method?: HttpMethod }) {
   const url = `${API_BASE}${path}`
   
   // No need to check for production API since we're always using the local backend
-  console.log('Fetching from local backend:', url)
+  // Log the request in development
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Fetching:', url)
+  }
   
   try {
-    // For all other cases, make a direct API request
-    console.log('Fetching:', url)
-    
     const res = await fetch(url, {
       ...init,
       headers: {
@@ -21,6 +21,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit & { method?: 
       },
       cache: 'no-store',
       mode: 'cors',
+      credentials: 'include', // Include credentials for cross-origin requests
     })
     
     if (!res.ok) {
@@ -29,12 +30,18 @@ export async function apiFetch<T>(path: string, init?: RequestInit & { method?: 
     
     return (await res.json()) as T
   } catch (error) {
-    // Log all errors since we're always using the local backend
-    console.error('Fetch failed:', error)
-    throw error
+    // Log the error in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('Fetch failed:', error)
+    }
     
-    // For all other cases, log the error and propagate it
-    console.error('Fetch failed:', error)
+    // In production, we might want to handle errors differently
+    // For example, redirect to an error page or show a notification
+    if (process.env.NODE_ENV === 'production') {
+      // You could implement error reporting here
+      // reportError(error);
+    }
+    
     throw error
   }
 }

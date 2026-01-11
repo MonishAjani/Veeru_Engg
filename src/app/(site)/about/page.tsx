@@ -29,7 +29,7 @@ const teamMembers = [
     id: 4,
     name: 'ShivKumar Sharma',
     position: 'Chief Financial Officer',
-    image: '/images/team/Shivkumar Sharma- Chief Financial Officer .jpg'
+    image: '/images/team/Shivkumar Sharma- Chief Financial Officer.jpg'
   }
 ];
 
@@ -141,10 +141,12 @@ export default function AboutPage() {
                 <div className="relative">
                   {/* Main Image */}
                   <div className="rounded-lg overflow-hidden shadow-xl">
-                    <img
-                      src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO%20.jpg"
+                    <Image
+                      src="/images/team/Virendra Singh- Founder & CEO.jpg"
                       alt="Virendra Singh - Founder & CEO"
-                      className="w-full h-[650px] object-cover"
+                      width={500}
+                      height={650}
+                      style={{ width: '100%', height: '650px', objectFit: 'cover' }}
                     />
                   </div>
                   

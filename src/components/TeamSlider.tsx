@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import ResponsiveImage from './ResponsiveImage';
+import Image from 'next/image';
 
 interface TeamMember {
   id: number;
@@ -81,12 +81,13 @@ export default function TeamSlider({ members }: TeamSliderProps) {
             className="min-w-full px-4"
           >
             <div className="bg-steel-800/30 rounded-xl overflow-hidden border border-steel-700/50">
-              <div className="aspect-[4/3] overflow-hidden">
-                <ResponsiveImage
+              <div className="aspect-[4/3] overflow-hidden relative">
+                <Image
                   src={member.image}
                   alt={member.name}
-                  aspectRatio="4-3"
-                  objectFit="cover"
+                  width={400}
+                  height={300}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
               </div>
               <div className="p-6">
