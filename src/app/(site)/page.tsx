@@ -87,7 +87,7 @@ export default function HomePage() {
         work_details: "CW, ACW and RW Piping along with fittings, valves and accessories for 2x800 MW (Phase-II) Ultra Super Critical Thermal Power Project, Fabrication, Erection & Painting.",
         quantity: "11000 MT",
         location: "Raipur",
-        client: "Adani Power Limited",
+        client: "Adani Power Limitedss",
         image_url: "/images/Prestigious%20Project/Adani%20power%20Raipur/Thumbnail%20%281%29.jpg",
         order: 3,
         is_active: true,
