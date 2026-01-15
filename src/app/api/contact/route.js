@@ -11,8 +11,8 @@ export async function POST(request) {
       port: 587,
       secure: false,
       auth: {
-        user: 'ajanimonish14@gmail.com',
-        pass: 'lxxz mqmf lxpy zfbo', // App password
+        user: 'veeruinfranag@gmail.com',
+        pass: 'racr egsy abnd uqsp', // App password
       },
     });
     
@@ -36,8 +36,8 @@ export async function POST(request) {
     
     // Send email
     await transporter.sendMail({
-      from: '"Veeru Engineering Website" <ajanimonish14@gmail.com>',
-      to: "veeruinfranag@gmail.com, ajanimonish14@gmail.com", // Send to both emails
+      from: '"Veeru Engineering Website" <veeruinfranag@gmail.com>',
+      to: "veeruinfranag@gmail.com", // Send only to this email
       subject: `New Project Enquiry from ${formData.fullName}`,
       html: emailContent,
       replyTo: formData.email,
