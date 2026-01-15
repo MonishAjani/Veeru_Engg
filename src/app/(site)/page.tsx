@@ -260,11 +260,11 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Service 1 - Structural Fabrication */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-56">
+              <div className="relative h-44 sm:h-52 md:h-56">
                 <Image
                   src="/images/Structural%20Fabrication.png"
                   alt="Structural Fabrication"
@@ -283,7 +283,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-12 sm:pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Structural Fabrication</h3>
                 <p className="text-gray-600 text-sm mb-4">Precision metal fabrication services for industrial applications with high-quality standards.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -295,7 +295,7 @@ export default function HomePage() {
             {/* Service 2 - Industrial Piping */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-56">
+              <div className="relative h-44 sm:h-52 md:h-56">
                 <Image
                   src="/images/Industrial%20Piping.png"
                   alt="Industrial Piping"
@@ -314,7 +314,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-12 sm:pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Industrial Piping</h3>
                 <p className="text-gray-600 text-sm mb-4">Comprehensive industrial piping solutions for various applications and industries.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -326,7 +326,7 @@ export default function HomePage() {
             {/* Service 3 - Heavy Equipment */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-56">
+              <div className="relative h-44 sm:h-52 md:h-56">
                 <Image
                   src="/images/Heavy%20Equipments.png"
                   alt="Heavy Equipment"
@@ -349,7 +349,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-12 sm:pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Heavy Equipment</h3>
                 <p className="text-gray-600 text-sm mb-4">Specialized industrial equipment installation, maintenance, and repair services.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -387,7 +387,7 @@ export default function HomePage() {
               <p className="text-gray-500 mt-2">Please check back later for our project portfolio.</p>
             </div>
           ) : (
-            <div className="flex gap-8 items-start">
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
               {/* Left Side - Navigation Dots */}
               <div className="hidden lg:flex flex-col gap-4 pt-8">
                 {prestigiousProjects.map((_, index) => (
@@ -406,7 +406,7 @@ export default function HomePage() {
 
               {/* Center - Cards Display */}
               <div
-                className="flex-1 relative h-auto lg:h-[550px]"
+                className="flex-1 relative min-h-[520px] sm:min-h-[560px] lg:h-[550px]"
                 onMouseEnter={() => {
                   setIsPaused(true);
                 }}
@@ -463,14 +463,14 @@ export default function HomePage() {
                 {prestigiousProjects.length > 0 && (
                   <div
                     key={prestigiousProjects[currentSlide].id}
-                    className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out"
+                    className="relative lg:absolute w-full lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 transition-all duration-700 ease-out"
                   >
                     <div
                       className="rounded-3xl overflow-hidden transition-all duration-500 max-w-5xl mx-auto shadow-2xl bg-white border-2 border-orange-300"
                     >
                       <div className="flex flex-col lg:flex-row">
                         {/* Image on Left */}
-                        <div className="w-full lg:w-1/2 h-[220px] lg:h-auto bg-gray-200">
+                        <div className="w-full lg:w-1/2 h-56 sm:h-64 lg:h-auto bg-gray-200">
                           <Image
                             src={prestigiousProjects[currentSlide].image_url}
                             alt={prestigiousProjects[currentSlide].name}
@@ -486,13 +486,13 @@ export default function HomePage() {
                         </div>
 
                         {/* Content on Right */}
-                        <div className="w-full lg:w-1/2 p-5 sm:p-8 flex flex-col justify-between">
+                        <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8 flex flex-col justify-between">
                           <div>
                             <div className="inline-block bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
                               Project {currentSlide + 1} of {prestigiousProjects.length}
                             </div>
                             
-                            <h3 className="text-3xl font-bold mb-4 text-gray-900">
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
                               {prestigiousProjects[currentSlide].name}
                             </h3>
                             
@@ -541,7 +541,7 @@ export default function HomePage() {
 
           {/* Bottom Navigation Controls */}
           {!isLoading && prestigiousProjects.length > 0 && (
-            <div className="flex items-center justify-center gap-6 mt-12">
+            <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-12">
               <button
                 onClick={() => {
                   const newSlide = (currentSlide - 1 + prestigiousProjects.length) % prestigiousProjects.length;
