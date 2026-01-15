@@ -260,11 +260,11 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Service 1 - Structural Fabrication */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-44 sm:h-52 md:h-56">
+              <div className="relative h-48 sm:h-52 md:h-56">
                 <Image
                   src="/images/Structural%20Fabrication.png"
                   alt="Structural Fabrication"
@@ -273,7 +273,7 @@ export default function HomePage() {
                   style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 {/* Circular Icon */}
-                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
+                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 sm:translate-y-1/2 translate-y-0 sm:block hidden">
                   <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center border-2 border-orange-200">
                     <svg className="h-8 w-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -283,19 +283,19 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-4 sm:p-6 pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Structural Fabrication</h3>
                 <p className="text-gray-600 text-sm mb-4">Precision metal fabrication services for industrial applications with high-quality standards.</p>
-                <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
+                <Link href="/contact" className="mt-auto inline-block text-orange-500 hover:text-orange-700 font-medium">
                   Contact Us
                 </Link>
               </div>
             </div>
             
             {/* Service 2 - Industrial Piping */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-44 sm:h-52 md:h-56">
+              <div className="relative h-48 sm:h-52 md:h-56">
                 <Image
                   src="/images/Industrial%20Piping.png"
                   alt="Industrial Piping"
@@ -304,7 +304,7 @@ export default function HomePage() {
                   style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 {/* Circular Icon */}
-                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
+                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 sm:translate-y-1/2 translate-y-0 sm:block hidden">
                   <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center border-2 border-orange-200">
                     <svg className="h-8 w-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
@@ -314,19 +314,19 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-4 sm:p-6 pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Industrial Piping</h3>
                 <p className="text-gray-600 text-sm mb-4">Comprehensive industrial piping solutions for various applications and industries.</p>
-                <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
+                <Link href="/contact" className="mt-auto inline-block text-orange-500 hover:text-orange-700 font-medium">
                   Contact Us
                 </Link>
               </div>
             </div>
             
             {/* Service 3 - Heavy Equipment */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
-              <div className="relative h-44 sm:h-52 md:h-56">
+              <div className="relative h-48 sm:h-52 md:h-56">
                 <Image
                   src="/images/Heavy%20Equipments.png"
                   alt="Heavy Equipment"
@@ -339,7 +339,7 @@ export default function HomePage() {
                   }}
                 />
                 {/* Circular Icon */}
-                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
+                <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 sm:translate-y-1/2 translate-y-0 sm:block hidden">
                   <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center border-2 border-orange-200">
                     <svg className="h-8 w-8 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -349,10 +349,10 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-4 sm:p-6 pt-10 text-center">
+              <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Heavy Equipment</h3>
                 <p className="text-gray-600 text-sm mb-4">Specialized industrial equipment installation, maintenance, and repair services.</p>
-                <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
+                <Link href="/contact" className="mt-auto inline-block text-orange-500 hover:text-orange-700 font-medium">
                   Contact Us
                 </Link>
               </div>
