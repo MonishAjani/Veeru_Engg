@@ -6,19 +6,19 @@
 set -e
 
 # Configuration variables - EDIT THESE
-DOMAIN="yourdomain.com"
+DOMAIN="your_domain.com"
 API_SUBDOMAIN="api"
 DB_NAME="infracorp"
 DB_USER="infracorpuser"
-DB_PASSWORD="your_secure_password"
-DJANGO_SECRET_KEY="your_django_secret_key"
+DB_PASSWORD="your_secure_password"  # IMPORTANT: Change this to a secure password
+DJANGO_SECRET_KEY="$(openssl rand -base64 32)"  # Generates a random secure key
 EMAIL="your_email@example.com"
 EMAIL_HOST="smtp.example.com"
 EMAIL_PORT="587"
 EMAIL_USER="your_email@example.com"
-EMAIL_PASSWORD="your_email_password"
+EMAIL_PASSWORD="your_email_password"  # IMPORTANT: Change this to your actual email password
 PROJECT_DIR="/var/www/infracorp"
-GIT_REPO="https://github.com/yourusername/infra-corp.git"
+GIT_REPO="https://github.com/yourusername/infra-corp.git"  # Update with your actual repository URL
 SERVER_IP=$(hostname -I | awk '{print $1}')
 
 # Colors for output
@@ -270,7 +270,14 @@ npm install
 # Create production environment file
 echo "Creating production environment file..."
 cat > .env.production << EOF
-NEXT_PUBLIC_API_URL=https://$API_SUBDOMAIN.$DOMAIN
+NEXT_PUBLIC_API_URL=https://$API_SUBDOMAIN.$DOMAIN/api
+NEXT_PUBLIC_DOMAIN=$DOMAIN
+NEXT_PUBLIC_API_DOMAIN=$API_SUBDOMAIN.$DOMAIN
+NEXT_PUBLIC_DEPLOYMENT_URL=https://$DOMAIN
+NEXT_PUBLIC_IMAGE_DOMAINS=$API_SUBDOMAIN.$DOMAIN,$DOMAIN,localhost
+NODE_ENV=production
+NEXT_PUBLIC_ENABLE_BLOG=false
+NEXT_PUBLIC_ENABLE_TESTIMONIALS=true
 EOF
 
 # Build the Next.js application

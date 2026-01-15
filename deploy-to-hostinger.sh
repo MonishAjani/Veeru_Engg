@@ -6,13 +6,13 @@
 set -e
 
 # Configuration variables - EDIT THESE
-DOMAIN="your_domain.com"
+DOMAIN="veeruengineering.com"
 API_SUBDOMAIN="api"
 DB_NAME="infracorp"
 DB_USER="infracorpuser"
-DB_PASSWORD="your_secure_password"
-DJANGO_SECRET_KEY="your_secret_key"
-PROJECT_DIR="/var/www/infra-corp"
+DB_PASSWORD="your_secure_password"  # IMPORTANT: Change this to a secure password
+DJANGO_SECRET_KEY="$(openssl rand -base64 32)"  # Generates a random secure key
+PROJECT_DIR="/var/www/infra-corp"  # Standard project directory
 EMAIL="your_email@example.com"
 
 # Colors for output
@@ -70,7 +70,7 @@ if [ "$(ls -A $PROJECT_DIR)" ]; then
 else
     print_section "Cloning repository"
     # Replace with your actual repository URL
-    git clone https://github.com/yourusername/infra-corp.git .
+    git clone https://github.com/yourusername/infra-corp.git . || print_warning "Git clone failed. You may need to upload files manually."
 fi
 
 print_section "Setting up PostgreSQL database"
@@ -182,7 +182,14 @@ npm install
 
 # Create production environment file
 cat > .env.production << EOF
-NEXT_PUBLIC_API_URL=https://$API_SUBDOMAIN.$DOMAIN
+NEXT_PUBLIC_API_URL=https://$API_SUBDOMAIN.$DOMAIN/api
+NEXT_PUBLIC_DOMAIN=$DOMAIN
+NEXT_PUBLIC_API_DOMAIN=$API_SUBDOMAIN.$DOMAIN
+NEXT_PUBLIC_DEPLOYMENT_URL=https://$DOMAIN
+NEXT_PUBLIC_IMAGE_DOMAINS=$API_SUBDOMAIN.$DOMAIN,$DOMAIN,localhost
+NODE_ENV=production
+NEXT_PUBLIC_ENABLE_BLOG=false
+NEXT_PUBLIC_ENABLE_TESTIMONIALS=true
 EOF
 
 # Build the Next.js application

@@ -7,13 +7,15 @@ const nextConfig = {
     ],
     unoptimized: true,
     domains: [
-      'veeruengineering.com',
-      'api.veeruengineering.com',
+      process.env.NEXT_PUBLIC_DOMAIN || 'localhost',
+      process.env.NEXT_PUBLIC_API_DOMAIN || 'localhost',
       'localhost'
     ]
   },
   // Add asset prefix for production
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://veeruengineering.com' : undefined,
+  assetPrefix: process.env.NODE_ENV === 'production'
+    ? `https://${process.env.NEXT_PUBLIC_DOMAIN || 'localhost'}`
+    : undefined,
   // Ensure trailing slashes for consistent path handling
   trailingSlash: true,
   // Output standalone build for easier deployment

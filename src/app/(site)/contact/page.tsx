@@ -32,19 +32,24 @@ export default function ContactPage() {
     setEnquiryForm(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError(false);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Enquiry form submitted:', enquiryForm);
+    try {
+      // Send form data to API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(enquiryForm),
+      });
       
-      // 95% chance of success for demo purposes
-      if (Math.random() > 0.05) {
+      if (response.ok) {
+        console.log('Enquiry form submitted successfully');
         setSubmitSuccess(true);
-        setIsSubmitting(false);
         
         // Reset form after success
         setTimeout(() => {
@@ -61,10 +66,15 @@ export default function ContactPage() {
           });
         }, 3000);
       } else {
+        console.error('Form submission failed');
         setSubmitError(true);
-        setIsSubmitting(false);
       }
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Project type options
