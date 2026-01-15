@@ -142,12 +142,12 @@ export default function HomePage() {
               </div>
               
               {/* Main Heading */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Building <span className="text-orange-500">Industrial</span> Infrastructure for Tomorrow
               </h1>
               
               {/* Description */}
-              <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
                 Expert structural fabrication, industrial piping, and heavy equipment installation
                 trusted by leading industries across India.
               </p>
@@ -174,7 +174,7 @@ export default function HomePage() {
               </div>
               
               {/* Stats with animated counters */}
-              <div className="grid grid-cols-3 gap-12 pt-8 pb-12 -mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 pt-8 pb-12 -mt-4">
                 <div className="text-center">
                   <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                     <CountUp end={30} suffix="+" className="text-gray-900" />
@@ -196,10 +196,10 @@ export default function HomePage() {
               </div>
             </div>
             {/* Right Section - Visual Grid - Exact match to reference image */}
-            <div className="grid grid-cols-2 h-[500px]" style={{ gap: '8px' }}>
-              <div className="grid grid-cols-2 h-full" style={{ gap: '10px', marginTop: '-35px' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-[500px] gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 h-auto lg:h-full gap-4 mt-0 lg:mt-[-35px]">
                 {/* Top Left - Construction Cranes Image (Square) */}
-                <div className="col-span-2 rounded-2xl overflow-hidden" style={{ height: '200px', width: '224px' }}>
+                <div className="col-span-2 w-full h-[180px] sm:h-[200px] lg:w-[224px] rounded-2xl overflow-hidden">
                   <Image
                     src="/images/01 (1).jpg"
                     alt="Construction Cranes"
@@ -209,7 +209,7 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Bottom Left - Orange Card with Expert Team (Rectangle) */}
-                <div className="col-span-2 rounded-2xl overflow-hidden bg-[#FF5722] flex flex-col justify-end p-6" style={{ height: '360px', width: '224px' }}>
+                <div className="col-span-2 w-full h-[280px] sm:h-[360px] lg:w-[224px] rounded-2xl overflow-hidden bg-[#FF5722] flex flex-col justify-end p-6">
                   <div className="mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -222,7 +222,7 @@ export default function HomePage() {
               
               <div className="grid grid-cols-1 h-full flex flex-col items-center" style={{ gap: '10px' }}>
                 {/* Top Right - Image Card - Styled to match reference */}
-                <div className="col-span-2 rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto" style={{ height: '420px', width: '320px' }}>
+                <div className="col-span-2 w-full h-[350px] sm:h-[420px] lg:w-[320px] rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto">
                   <Image
                     src="/images/team/Virendra%20Singh-%20Founder%20%26%20CEO.jpg"
                     alt="Virendra Singh - Founder & CEO"
@@ -235,7 +235,7 @@ export default function HomePage() {
                 </div>
                 
                 {/* Bottom Right - Person in Protective Gear Image (Square) - Adjusted for spacing */}
-                <div className="col-span-2 rounded-2xl overflow-hidden mt-4" style={{ height: '160px', width: '300px' }}>
+                <div className="col-span-2 w-full h-[160px] lg:w-[300px] rounded-2xl overflow-hidden mt-4">
                   <Image
                     src="/images/02.jpg"
                     alt="Engineer in Protective Gear"
@@ -254,8 +254,8 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Comprehensive industrial solutions tailored to meet your specific project requirements
             </p>
           </div>
@@ -283,7 +283,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-10 text-center">
+              <div className="p-6 pt-12 sm:pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Structural Fabrication</h3>
                 <p className="text-gray-600 text-sm mb-4">Precision metal fabrication services for industrial applications with high-quality standards.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -314,7 +314,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-10 text-center">
+              <div className="p-6 pt-12 sm:pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Industrial Piping</h3>
                 <p className="text-gray-600 text-sm mb-4">Comprehensive industrial piping solutions for various applications and industries.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -349,7 +349,7 @@ export default function HomePage() {
               </div>
               
               {/* Content Section */}
-              <div className="p-6 pt-10 text-center">
+              <div className="p-6 pt-12 sm:pt-10 text-center">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Heavy Equipment</h3>
                 <p className="text-gray-600 text-sm mb-4">Specialized industrial equipment installation, maintenance, and repair services.</p>
                 <Link href="/contact" className="inline-block text-orange-500 hover:text-orange-700 font-medium">
@@ -371,8 +371,8 @@ export default function HomePage() {
         
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Prestigious Projects</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Prestigious Projects</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Discover our exceptional work and innovative solutions across various industries
             </p>
           </div>
@@ -389,7 +389,7 @@ export default function HomePage() {
           ) : (
             <div className="flex gap-8 items-start">
               {/* Left Side - Navigation Dots */}
-              <div className="flex flex-col gap-4 pt-8">
+              <div className="hidden lg:flex flex-col gap-4 pt-8">
                 {prestigiousProjects.map((_, index) => (
                   <button
                     key={index}
@@ -406,7 +406,7 @@ export default function HomePage() {
 
               {/* Center - Cards Display */}
               <div
-                className="flex-1 relative h-[550px]"
+                className="flex-1 relative h-auto lg:h-[550px]"
                 onMouseEnter={() => {
                   setIsPaused(true);
                 }}
@@ -468,9 +468,9 @@ export default function HomePage() {
                     <div
                       className="rounded-3xl overflow-hidden transition-all duration-500 max-w-5xl mx-auto shadow-2xl bg-white border-2 border-orange-300"
                     >
-                      <div className="flex">
+                      <div className="flex flex-col lg:flex-row">
                         {/* Image on Left */}
-                        <div className="w-1/2 bg-gray-200">
+                        <div className="w-full lg:w-1/2 h-[220px] lg:h-auto bg-gray-200">
                           <Image
                             src={prestigiousProjects[currentSlide].image_url}
                             alt={prestigiousProjects[currentSlide].name}
@@ -486,7 +486,7 @@ export default function HomePage() {
                         </div>
 
                         {/* Content on Right */}
-                        <div className="w-1/2 p-8 flex flex-col justify-between">
+                        <div className="w-full lg:w-1/2 p-5 sm:p-8 flex flex-col justify-between">
                           <div>
                             <div className="inline-block bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
                               Project {currentSlide + 1} of {prestigiousProjects.length}
@@ -582,11 +582,11 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 bg-orange-500">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
-          <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
+          <p className="text-base sm:text-lg md:text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
             Our team of experts is ready to help you bring your vision to life with our comprehensive range of services.
           </p>
-          <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-white text-orange-500 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-white text-orange-500 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <span className="flex items-center">
               Contact Us
               <svg className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
