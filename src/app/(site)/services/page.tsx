@@ -103,7 +103,7 @@ export default function ServicesPage() {
               </p>
             </div>
           </div>
-          
+
           <div className="responsive-grid-3">
             {dummyServices.map((service) => (
               <div
@@ -115,7 +115,7 @@ export default function ServicesPage() {
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
                 <p className="text-gray-600 text-sm sm:text-base">{service.description}</p>
-                
+
                 <div className="mt-6 pt-4 border-t border-gray-200 w-full">
                   <Link
                     href="/contact"
@@ -135,24 +135,24 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-          
+
           {/* Stats Section */}
           <div className="my-12 sm:my-16 py-8 sm:py-10 px-4 sm:px-8 bg-gray-50 rounded-xl shadow-lg relative overflow-hidden">
             <div className="absolute -right-20 -top-20 w-80 h-80 bg-orange-500 opacity-5 rounded-full"></div>
             <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-orange-500 opacity-5 rounded-full"></div>
-            
+
             <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 text-center text-gray-900">Our Impact by the Numbers</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center transform transition-all duration-300 hover:scale-105">
                 <div className="text-4xl font-bold text-gray-900 mb-2">
                   <span className="text-orange-500">
-                    <CountUp end={150} suffix="+" duration={2.5} />
+                    <CountUp end={120} suffix="+" duration={2.5} />
                   </span>
                 </div>
                 <div className="text-gray-600">Projects Completed</div>
               </div>
-              
+
               <div className="text-center transform transition-all duration-300 hover:scale-105">
                 <div className="text-4xl font-bold text-gray-900 mb-2">
                   <span className="text-orange-500">
@@ -161,7 +161,7 @@ export default function ServicesPage() {
                 </div>
                 <div className="text-gray-600">Years Experience</div>
               </div>
-              
+
               <div className="text-center transform transition-all duration-300 hover:scale-105">
                 <div className="text-4xl font-bold text-gray-900 mb-2">
                   <span className="text-orange-500">
@@ -170,7 +170,7 @@ export default function ServicesPage() {
                 </div>
                 <div className="text-gray-600">Satisfied Clients</div>
               </div>
-              
+
               <div className="text-center transform transition-all duration-300 hover:scale-105">
                 <div className="text-4xl font-bold text-gray-900 mb-2">
                   <span className="text-orange-500">
@@ -181,7 +181,7 @@ export default function ServicesPage() {
               </div>
             </div>
           </div>
-          
+
           {/* CTA Section */}
           <div className="mt-12 sm:mt-16 text-center px-4 sm:px-0">
             <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-gray-900">Ready to Start Your Project?</h3>

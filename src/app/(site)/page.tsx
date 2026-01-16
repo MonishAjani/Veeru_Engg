@@ -19,7 +19,7 @@ export default function HomePage() {
       try {
         setIsLoading(true);
         const projects = await getPrestigiousProjects();
-        
+
         if (projects.length > 0) {
           setPrestigiousProjects(projects);
         } else {
@@ -34,10 +34,10 @@ export default function HomePage() {
         setIsLoading(false);
       }
     }
-    
+
     fetchPrestigiousProjects();
   }, []);
-  
+
   // Modified auto-scrolling effect with pause capability
   useEffect(() => {
     if (prestigiousProjects.length === 0 || isPaused) return;
@@ -48,7 +48,7 @@ export default function HomePage() {
 
     return () => clearInterval(interval);
   }, [isPaused, prestigiousProjects.length]);
-  
+
   // Function to get dummy prestigious projects data
   function getDummyPrestigiousProjects(): PrestigiousProject[] {
     return [
@@ -140,18 +140,18 @@ export default function HomePage() {
                 </svg>
                 <span>Since 1995</span>
               </div>
-              
+
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Building <span className="text-orange-500">Industrial</span> Infrastructure for Tomorrow
               </h1>
-              
+
               {/* Description */}
               <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
                 Expert structural fabrication, industrial piping, and heavy equipment installation
                 trusted by leading industries across India.
               </p>
-              
+
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 bg-orange-500 text-white rounded-lg shadow-lg hover:bg-orange-600 transition-all duration-300 hover:shadow-xl">
@@ -162,7 +162,7 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </Link>
-                
+
                 <Link href="/projects" className="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300">
                   <span className="flex items-center">
                     View Projects
@@ -172,7 +172,7 @@ export default function HomePage() {
                   </span>
                 </Link>
               </div>
-              
+
               {/* Stats with animated counters */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12 pt-8 pb-12 -mt-4">
                 <div className="text-center">
@@ -219,7 +219,7 @@ export default function HomePage() {
                   <p className="text-white/80 text-sm">Skilled Engineers & Technicians</p>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 h-full flex flex-col items-center" style={{ gap: '10px' }}>
                 {/* Top Right - Image Card - Styled to match reference */}
                 <div className="col-span-2 w-full h-[350px] sm:h-[420px] lg:w-[320px] rounded-3xl overflow-hidden bg-gray-100 shadow-lg mx-auto">
@@ -233,7 +233,7 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 300px"
                   />
                 </div>
-                
+
                 {/* Bottom Right - Person in Protective Gear Image (Square) - Adjusted for spacing */}
                 <div className="col-span-2 w-full h-[160px] lg:w-[300px] rounded-2xl overflow-hidden mt-4">
                   <Image
@@ -241,12 +241,12 @@ export default function HomePage() {
                     alt="Engineer in Protective Gear"
                     width={300}
                     height={160}
-                    style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                    style={{ objectFit: 'cover', width: '100%', height: '100%', objectPosition: 'center top' }}
                   />
                 </div>
               </div>
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -259,7 +259,7 @@ export default function HomePage() {
               Comprehensive industrial solutions tailored to meet your specific project requirements
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Service 1 - Structural Fabrication */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col min-h-[420px] sm:min-h-[460px] hover:shadow-lg transition-all duration-300">
@@ -281,7 +281,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Content Section */}
               <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Structural Fabrication</h3>
@@ -291,7 +291,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            
+
             {/* Service 2 - Industrial Piping */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col min-h-[420px] sm:min-h-[460px] hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
@@ -312,7 +312,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Content Section */}
               <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Industrial Piping</h3>
@@ -322,7 +322,7 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            
+
             {/* Service 3 - Heavy Equipment */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col min-h-[420px] sm:min-h-[460px] hover:shadow-lg transition-all duration-300">
               {/* Image Section */}
@@ -347,7 +347,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Content Section */}
               <div className="p-4 sm:p-6 pt-6 sm:pt-10 text-center flex flex-col flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Heavy Equipment</h3>
@@ -368,7 +368,7 @@ export default function HomePage() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
           backgroundSize: '30px 30px'
         }}></div>
-        
+
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Prestigious Projects</h2>
@@ -376,7 +376,7 @@ export default function HomePage() {
               Discover our exceptional work and innovative solutions across various industries
             </p>
           </div>
-          
+
           {isLoading ? (
             <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
@@ -394,11 +394,10 @@ export default function HomePage() {
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`transition-all rounded-full ${
-                      index === currentSlide
-                        ? 'bg-orange-500 w-6 h-6 shadow-lg'
-                        : 'bg-gray-300 w-4 h-4 hover:bg-gray-400'
-                    }`}
+                    className={`transition-all rounded-full ${index === currentSlide
+                      ? 'bg-orange-500 w-6 h-6 shadow-lg'
+                      : 'bg-gray-300 w-4 h-4 hover:bg-gray-400'
+                      }`}
                     aria-label={`Go to project ${index + 1}`}
                   />
                 ))}
@@ -416,10 +415,10 @@ export default function HomePage() {
               >
                 {/* Top gradient decoration */}
                 <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-orange-50 to-transparent opacity-70 rounded-t-3xl"></div>
-                
+
                 {/* Bottom gradient decoration */}
                 <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-orange-50 to-transparent opacity-70 rounded-b-3xl"></div>
-                
+
                 {/* Left subtle pattern */}
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-32">
                   <div className="w-1 h-1 bg-orange-200 rounded-full mb-3 opacity-40"></div>
@@ -432,7 +431,7 @@ export default function HomePage() {
                   <div className="w-1 h-1 bg-orange-200 rounded-full mb-3 opacity-40"></div>
                   <div className="w-1 h-1 bg-orange-200 rounded-full opacity-40"></div>
                 </div>
-                
+
                 {/* Right subtle pattern */}
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-32">
                   <div className="w-1 h-1 bg-orange-200 rounded-full mb-3 opacity-40"></div>
@@ -445,20 +444,20 @@ export default function HomePage() {
                   <div className="w-1 h-1 bg-orange-200 rounded-full mb-3 opacity-40"></div>
                   <div className="w-1 h-1 bg-orange-200 rounded-full opacity-40"></div>
                 </div>
-                
+
                 {/* Previous/Next project indicators */}
                 {currentSlide > 0 && (
                   <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 bg-white/80 px-3 py-1 rounded-full">
                     Previous: {prestigiousProjects[(currentSlide - 1 + prestigiousProjects.length) % prestigiousProjects.length].name}
                   </div>
                 )}
-                
+
                 {currentSlide < prestigiousProjects.length - 1 && (
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 bg-white/80 px-3 py-1 rounded-full">
                     Next: {prestigiousProjects[(currentSlide + 1) % prestigiousProjects.length].name}
                   </div>
                 )}
-                
+
                 {/* Current project card */}
                 {prestigiousProjects.length > 0 && (
                   <div
@@ -491,11 +490,11 @@ export default function HomePage() {
                             <div className="inline-block bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
                               Project {currentSlide + 1} of {prestigiousProjects.length}
                             </div>
-                            
+
                             <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
                               {prestigiousProjects[currentSlide].name}
                             </h3>
-                            
+
                             {/* <p className="text-lg leading-relaxed mb-8 text-gray-700">
                               {prestigiousProjects[currentSlide].details}
                             </p> */}
@@ -510,7 +509,7 @@ export default function HomePage() {
                                 <span className="font-semibold">Work:</span> {prestigiousProjects[currentSlide].work_details || prestigiousProjects[currentSlide].details}
                               </div>
                             </div>
-                            
+
                             <div className="flex items-start gap-3">
                               <svg className="w-5 h-5 text-orange-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
@@ -519,7 +518,7 @@ export default function HomePage() {
                                 <span className="font-semibold">Quantity:</span> {prestigiousProjects[currentSlide].quantity}
                               </div>
                             </div>
-                            
+
                             <div className="flex items-start gap-3">
                               <svg className="w-5 h-5 text-orange-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
