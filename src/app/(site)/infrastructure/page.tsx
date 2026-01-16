@@ -1,4 +1,4 @@
-
+// hi
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -21,20 +21,20 @@ export default function InfrastructurePage() {
   };
   // Parallax effect for hero section
   const heroRef = useRef(null);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
         const scrollPosition = window.scrollY;
         const heroElement = heroRef.current;
-        
+
         // Reduced parallax effect to ensure image remains visible
         const parallaxSpeed = 0.2;
         const yPos = scrollPosition * parallaxSpeed;
-        
+
         // Apply gentler parallax effect to background image
         heroElement.style.backgroundPosition = `center calc(50% - ${yPos}px)`;
-        
+
         // Fade out text as user scrolls down
         const opacity = Math.max(1 - scrollPosition / 500, 0);
         const heroContent = heroElement.querySelector('.hero-content');
@@ -43,11 +43,11 @@ export default function InfrastructurePage() {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   return (
     <div>
       {/* Custom Hero Section with Bulldozer Image */}
@@ -69,21 +69,21 @@ export default function InfrastructurePage() {
                 // Removed mask image to show full image
               }}
             ></div>
-            
+
             {/* Subtle dark overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-transparent"></div>
-            
+
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-orange-900/20 to-blue-900/20 animate-gradient-x"></div>
           </div>
-          
+
           {/* White content area that blends with the image - using only the wavy SVG */}
           <div className="absolute bottom-0 left-0 right-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto translate-y-1">
               <path fill="#ffffff" fillOpacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
             </svg>
           </div>
-          
+
           {/* Hero content */}
           <div className="container px-4 sm:px-6 md:px-8 relative z-10 hero-content">
             <div className="max-w-3xl mx-auto text-center">
@@ -94,23 +94,23 @@ export default function InfrastructurePage() {
                 </svg>
                 <span>Excellence in Engineering</span>
               </div>
-              
+
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
                 Our <span className="text-orange-500">Infrastructure</span>
               </h1>
-              
+
               <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
                 Advanced facilities and equipment that enable us to deliver exceptional quality and efficiency.
               </p>
             </div>
           </div>
         </div>
-        
+
         {/* Content */}
         {/* <div className="container px-4 sm:px-6 md:px-8 relative z-10 hero-content">
           <div className="max-w-3xl mx-auto text-center"> */}
-            {/* Orange badge */}
-            {/* <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white mb-4 animate-bounce">
+        {/* Orange badge */}
+        {/* <div className="inline-flex items-center gap-2 bg-orange-500 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white mb-4 animate-bounce">
               <svg className="h-3 w-3 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
@@ -124,16 +124,16 @@ export default function InfrastructurePage() {
             <p className="mt-3 sm:mt-4 text-base sm:text-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
               Advanced facilities and equipment that enable us to deliver exceptional quality and efficiency.
             </p> */}
-            
-            {/* No scroll down indicator */}
-            {/* <div className="hidden">
+
+        {/* No scroll down indicator */}
+        {/* <div className="hidden">
               <svg className="h-8 w-8 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
           </div>
         </div> */}
-        
+
         {/* Floating equipment icons */}
         {/* <div className="absolute top-1/4 left-1/4 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center animate-float">
           <svg className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -147,7 +147,7 @@ export default function InfrastructurePage() {
           </svg>
         </div> */}
       </section>
-      
+
       {/* Add custom animations */}
       <style jsx global>{`
         @keyframes float {
@@ -198,13 +198,13 @@ export default function InfrastructurePage() {
                 <div className="h-1 w-20 bg-orange-500 rounded mb-6"></div>
               </div>
             </div>
-            
+
             <p className="mb-6">
               Veeru Engineering & Infra. has the most advanced infrastructure, which enhances the
               quality of works and timely completion of our clients' projects. We are honestly and dedicatedly
               performing our duties for the welfare of company and clients as well.
             </p>
-            
+
             <p className="mb-6">
               We have highly qualified and experienced structural Engineers, site Engineers / Site
               Supervisors – Technical in civil-electrical-mechanical-structural who are capable of giving
@@ -221,7 +221,7 @@ export default function InfrastructurePage() {
                   <li>Mechanical engineering professionals</li>
                 </ul>
               </div>
-              
+
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-semibold mb-3 text-white">Technical Capabilities</h3>
                 <ul className="list-disc pl-5 space-y-2 text-white">
@@ -257,7 +257,7 @@ export default function InfrastructurePage() {
                 {/* Decorative elements */}
                 <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                 <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
-                
+
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
                   <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-4 shadow-lg">
@@ -267,7 +267,7 @@ export default function InfrastructurePage() {
                   </div>
                   <h3 className="text-xl font-semibold text-white">Mechanical Machinery</h3>
                 </div>
-                
+
                 <div className="overflow-x-auto relative z-10">
                   <table className="responsive-table">
                     <thead>
@@ -283,7 +283,7 @@ export default function InfrastructurePage() {
                         <td className="py-2 text-center" data-label="QTY.">16</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Hydraulic Plate bending Machine<br/>Capacity:  40 mm x 3000 mm Width</td>
+                        <td className="py-2 pr-4">Hydraulic Plate bending Machine<br />Capacity:  40 mm x 3000 mm Width</td>
                         <td className="py-2 text-center">4</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
@@ -291,14 +291,14 @@ export default function InfrastructurePage() {
                         <td className="py-2 text-center">80</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                        <td className="py-2 pr-4">Rectifier Welding Machine<br/>(400 amp & 600 amp)</td>
+                        <td className="py-2 pr-4">Rectifier Welding Machine<br />(400 amp & 600 amp)</td>
                         <td className="py-2 text-center">800</td>
                       </tr>
                       <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
                         <td className="py-2 pr-4">Pug Cutting Machines</td>
                         <td className="py-2 text-center">150</td>
                       </tr>
-                      
+
                       {/* Show additional rows if expanded */}
                       {expandedTables.mechanical && (
                         <>
@@ -343,7 +343,7 @@ export default function InfrastructurePage() {
                             <td className="py-2 text-center">36</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
-                            <td className="py-2 pr-4">Hoist<br/>(Capacity- 2 Tone - 20 Tone) </td>
+                            <td className="py-2 pr-4">Hoist<br />(Capacity- 2 Tone - 20 Tone) </td>
                             <td className="py-2 text-center">36</td>
                           </tr>
                           <tr className="border-b border-steel-800 hover:bg-steel-800/30 transition-colors">
@@ -366,7 +366,7 @@ export default function InfrastructurePage() {
                       )}
                     </tbody>
                   </table>
-                  
+
                   {/* Load More / Show Less button */}
                   <div className="mt-6 text-center">
                     <button
@@ -395,12 +395,12 @@ export default function InfrastructurePage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
                 {/* Decorative elements */}
                 <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                 <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
-                
+
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
                   <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-4 shadow-lg">
@@ -410,7 +410,7 @@ export default function InfrastructurePage() {
                   </div>
                   <h3 className="text-xl font-semibold text-white">Civil Machinery</h3>
                 </div>
-                
+
                 <div className="overflow-x-auto relative z-10">
                   <table className="responsive-table">
                     <thead>
@@ -441,7 +441,7 @@ export default function InfrastructurePage() {
                         <td className="py-2 pr-4">Tipper (10 wheeler) Ashok Leyland</td>
                         <td className="py-2 text-center">13 Nos.</td>
                       </tr>
-                      
+
                       {/* Show additional rows if expanded */}
                       {expandedTables.civil && (
                         <>
@@ -505,7 +505,7 @@ export default function InfrastructurePage() {
                       )}
                     </tbody>
                   </table>
-                  
+
                   {/* Load More / Show Less button */}
                   <div className="mt-6 text-center">
                     <button
@@ -551,23 +551,23 @@ export default function InfrastructurePage() {
                 </p>
               </div>
             </div>
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
-  <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
-    {/* Decorative elements */}
-    <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
-    <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
-    
-    {/* Icon and title */}
-    <div className="flex items-center mb-6">
-      <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-4 shadow-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
-      </div>
-      <h3 className="text-xl font-semibold text-white">Staff List</h3>
-    </div>
-    
-                
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 shadow-lg relative overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
+
+                {/* Icon and title */}
+                <div className="flex items-center mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-4 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Staff List</h3>
+                </div>
+
+
                 <div className="overflow-x-auto">
                   <table className="responsive-table">
                     <thead>
@@ -598,7 +598,7 @@ export default function InfrastructurePage() {
                         <td className="py-2 pr-4">5. SUPERVISOR</td>
                         <td className="py-2 text-center">60</td>
                       </tr>
-                      
+
                       {/* Show additional rows if expanded */}
                       {expandedTables.staff && (
                         <>
@@ -630,7 +630,7 @@ export default function InfrastructurePage() {
                       )}
                     </tbody>
                   </table>
-                  
+
                   {/* Load More / Show Less button */}
                   <div className="mt-6 text-center">
                     <button
@@ -663,7 +663,7 @@ export default function InfrastructurePage() {
                 {/* Decorative elements */}
                 <div className="absolute -right-12 -top-12 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                 <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-white opacity-10 rounded-full"></div>
-                
+
                 {/* Icon and title */}
                 <div className="flex items-center mb-6">
                   <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-4 shadow-lg">
@@ -673,7 +673,7 @@ export default function InfrastructurePage() {
                   </div>
                   <h3 className="text-xl font-semibold text-white">Worker List</h3>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="responsive-table">
                     <thead>
@@ -704,7 +704,7 @@ export default function InfrastructurePage() {
                         <td className="py-2 pr-4">5. GRINDER</td>
                         <td className="py-2 text-center">65</td>
                       </tr>
-                      
+
                       {/* Show additional rows if expanded */}
                       {expandedTables.worker && (
                         <>
@@ -724,7 +724,7 @@ export default function InfrastructurePage() {
                       )}
                     </tbody>
                   </table>
-                  
+
                   {/* Load More / Show Less button */}
                   <div className="mt-6 text-center">
                     <button
@@ -759,9 +759,9 @@ export default function InfrastructurePage() {
             <div className="my-16 py-10 px-8 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg relative overflow-hidden">
               <div className="absolute -right-20 -top-20 w-80 h-80 bg-white opacity-5 rounded-full"></div>
               <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-white opacity-5 rounded-full"></div>
-              
+
               <h3 className="text-2xl font-semibold mb-8 text-center text-white">Our Capabilities at a Glance</h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
@@ -769,24 +769,24 @@ export default function InfrastructurePage() {
                   </div>
                   <div className="text-white">Years of Experience</div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={800} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Skilled Workforce</div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
                     <CountUp end={100} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Heavy Machinery</div>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-2">
-                    <CountUp end={500} suffix="+" duration={2.5} />
+                    <CountUp end={120} suffix="+" duration={2.5} />
                   </div>
                   <div className="text-white">Projects Completed</div>
                 </div>
